@@ -1,0 +1,8 @@
+{
+  "name": "mini-css-class-name",
+  "version": "0.1.0",
+  "description": "Minimum size unique CSS class names generator",
+  "main": "src/index.js",
+  "dependencies": {},
+  "license": "MIT"
+}
