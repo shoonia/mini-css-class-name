@@ -1,12 +1,20 @@
 # mini-css-class-name
 Minimum size unique CSS class names generator
 
+# Install
+
+```bash
+npm i mini-css-class-name
+# or
+yarn add mini-css-class-name
+```
+
 ## Basic
 
 ```js
-const minClassNames = require('mini-css-class-name');
+const miniClassNames = require('mini-css-class-name');
 
-const generate = minClassNames({
+const generate = miniClassNames({
   prefix: 'x__',
   suffix: '--',
   hash: 4,
@@ -17,12 +25,12 @@ generate(); // x__b--ei27
 generate(); // x__c--e80f
 ```
 
-## Reset
+## .reset()
 
 ```js
-const minClassNames = require('mini-css-class-name');
+const miniClassNames = require('mini-css-class-name');
 
-const generate = minClassNames();
+const generate = miniClassNames();
 
 generate(); // a
 generate(); // b
@@ -35,9 +43,9 @@ generate(); // a
 
 ## CSS Modules
 
-### webpack.config.js
+**webpack.config.js**
 ```js
-const minClassNames = require('mini-css-class-name/css-loader');
+const miniClassNames = require('mini-css-class-name/css-loader');
 
 module.exports = {
   module: {
@@ -47,10 +55,21 @@ module.exports = {
         loader: 'css-loader',
         options: {
           modules: true,
-          getLocalIdent: minClassNames({ hash: 4 }),
+          getLocalIdent: miniClassNames({ hash: 4 }),
         },
       },
     ],
   },
 };
 ```
+## Options
+
+|     Name            |    Type           | Default          | Description                        |
+|:-------------------:|:-----------------:|:----------------:|:----------------------------------:|
+|  **prefix**         |  `{String}`       |  `""`            |  prefix added to each class name
+|  **suffix**         |  `{String}`       |  `""`            |  suffix added to each class name
+|   **hash**          |  `{Number}`       |   `0`            |  length of generating a hash key
+
+## License
+
+[MIT](./LICENSE)

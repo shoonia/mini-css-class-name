@@ -2,7 +2,26 @@
   "name": "mini-css-class-name",
   "version": "0.1.0",
   "description": "Minimum size unique CSS class names generator",
-  "main": "src/index.js",
+  "main": "index.js",
   "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shoonia/mini-css-class-name.git"
+  },
+  "files": [
+    "index.js",
+    "css-loader.js"
+  ],
+  "keywords": [
+    "css-loader",
+    "getLocalIdent",
+    "modules",
+    "Identifiers"
+  ],
+  "author": {
+    "name": "Alexander Zaytsev",
+    "email": "zaytsev126@gmail.com",
+    "url": "https://twitter.com/_shoonia"
+  },
   "license": "MIT"
 }

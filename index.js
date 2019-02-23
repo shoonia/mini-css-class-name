@@ -1,8 +1,8 @@
 const firstChar = "abcdefghijklmnopqrstuvwxyz_";
 const secondChar = firstChar + "0123456789-";
 
-const FL = firstChar.length - 1;
-const SL = secondChar.length - 1;
+const FIRST_LENGTH = firstChar.length - 1;
+const SECOND_LENGTH = secondChar.length - 1;
 
 const tail = [];
 
@@ -19,7 +19,7 @@ function growUp(acc, index, max) {
 
   acc[index] = 0;
 
-  return growUp(acc, index + 1, SL);
+  return growUp(acc, index + 1, SECOND_LENGTH);
 }
 
 function createClassName(acc) {
@@ -33,11 +33,11 @@ function createClassName(acc) {
   return className;
 }
 
-function createHash(alphabet, size) {
+function createHash(chars, size) {
   let hash = "";
 
   while (0 < size--) {
-    hash += alphabet[(Math.random() * alphabet.length) | 0];
+    hash += chars[(Math.random() * chars.length) | 0];
   }
 
   return hash;
@@ -55,7 +55,7 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
   }
 
   function generate() {
-    const className = createClassName(growUp(tail, 0, FL));
+    const className = createClassName(growUp(tail, 0, FIRST_LENGTH));
 
     return `${prefix}${className}${suffix}${getHash()}`;
   };

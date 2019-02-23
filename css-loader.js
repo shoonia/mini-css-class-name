@@ -1,7 +1,7 @@
 const createClassName = require('./index.js');
 
-module.exports = function (config) {
-  const generate = createClassName(config);
+module.exports = function (options) {
+  const generate = createClassName(options);
   const map = new Map();
 
   return function (context, _, localName) {
