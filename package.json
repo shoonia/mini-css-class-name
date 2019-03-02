@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "dependencies": {},
@@ -13,10 +13,15 @@
     "css-loader.js"
   ],
   "keywords": [
+    "css",
+    "loader",
     "css-loader",
     "getLocalIdent",
+    "minify",
     "modules",
-    "Identifiers"
+    "Identifiers",
+    "webpack",
+    "class"
   ],
   "author": {
     "name": "Alexander Zaytsev",

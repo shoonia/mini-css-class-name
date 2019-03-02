@@ -55,7 +55,7 @@ module.exports = {
         loader: 'css-loader',
         options: {
           modules: true,
-          getLocalIdent: miniClassNames({ hash: 4 }),
+          getLocalIdent: miniClassNames(/* options */),
         },
       },
     ],

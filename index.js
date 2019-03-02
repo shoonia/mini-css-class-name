@@ -1,8 +1,8 @@
-const firstChar = "abcdefghijklmnopqrstuvwxyz_";
-const secondChar = firstChar + "0123456789-";
+const firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+const afterChar = firstChar + "0123456789-";
 
 const FIRST_LENGTH = firstChar.length - 1;
-const SECOND_LENGTH = secondChar.length - 1;
+const AFTER_LENGTH = afterChar.length - 1;
 
 const tail = [];
 
@@ -19,7 +19,7 @@ function growUp(acc, index, max) {
 
   acc[index] = 0;
 
-  return growUp(acc, index + 1, SECOND_LENGTH);
+  return growUp(acc, index + 1, AFTER_LENGTH);
 }
 
 function createClassName(acc) {
@@ -27,7 +27,7 @@ function createClassName(acc) {
   let className = firstChar[acc[0]];
 
   for (; i < acc.length; i++) {
-    className += secondChar[acc[i]];
+    className += afterChar[acc[i]];
   }
 
   return className;
@@ -47,7 +47,7 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
   let getHash;
 
   if (hash > 0) {
-    getHash = createHash.bind(null, secondChar, hash);
+    getHash = createHash.bind(null, afterChar, hash);
   } else {
     getHash = function () {
       return "";
