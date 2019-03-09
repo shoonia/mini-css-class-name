@@ -57,7 +57,7 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
   function generate() {
     const className = createClassName(growUp(tail, 0, FIRST_LENGTH));
 
-    return `${prefix}${className}${suffix}${getHash()}`;
+    return prefix + className + suffix + getHash();
   };
 
   generate.reset = function () {
