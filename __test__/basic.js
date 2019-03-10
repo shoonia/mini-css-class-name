@@ -5,11 +5,11 @@ const miniClassName = require('../index.js');
 describe('Create className', () => {
 
   it('100 000 unique className', () => {
-    const generator = miniClassName();
-    const classList = Array(1e5).fill(null).map(() => generator());
+    const generate = miniClassName();
+    const classList = Array(1e5).fill(null).map(() => generate());
     const uniqueList = Array.from(new Set(classList));
 
-    generator.reset();
+    generate.reset();
     assert.equal(classList.length, uniqueList.length);
   });
 
