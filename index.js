@@ -46,17 +46,11 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
   const startChar = (prefix.length < 1) ? firstChar : afterChar;
   const START_LENGH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
 
+  const getHash = (hash > 0)
+    ? createHash.bind(null, afterChar, hash)
+    : function () { return ""; };
+
   const tail = [];
-
-  let getHash;
-
-  if (hash > 0) {
-    getHash = createHash.bind(null, afterChar, hash);
-  } else {
-    getHash = function () {
-      return "";
-    };
-  }
 
   function generate() {
     const acc = growUp(tail, 0, START_LENGH, AFTER_LENGTH);
