@@ -9,10 +9,19 @@ npm i mini-css-class-name
 yarn add mini-css-class-name
 ```
 
+## Start
+
+```js
+// CommonJS
+const miniClassNames = require('mini-css-class-name');
+// ES6
+import miniClassName from 'mini-css-class-name';
+```
+
 ## Basic
 
 ```js
-const miniClassNames = require('mini-css-class-name');
+import miniClassNames from 'mini-css-class-name';
 
 const generate = miniClassNames({
   prefix: 'x__',
@@ -25,10 +34,10 @@ generate(); // x__b--ei27
 generate(); // x__c--e80f
 ```
 
-## .reset()
+## Reset
 
 ```js
-const miniClassNames = require('mini-css-class-name');
+import miniClassNames from 'mini-css-class-name';
 
 const generate = miniClassNames();
 
@@ -45,7 +54,7 @@ generate(); // a
 
 **webpack.config.js**
 ```js
-const miniClassNames = require('mini-css-class-name/css-loader');
+const getLocalIdent = require('mini-css-class-name/css-loader');
 
 module.exports = {
   module: {
@@ -55,12 +64,18 @@ module.exports = {
         loader: 'css-loader',
         options: {
           modules: true,
-          getLocalIdent: miniClassNames(/* options */),
+          getLocalIdent: getLocalIdent(/* options */),
         },
       },
     ],
   },
 };
+```
+
+### ES6
+
+```js
+import { getLocalIdent } from 'mini-css-class-name';
 ```
 ## Options
 

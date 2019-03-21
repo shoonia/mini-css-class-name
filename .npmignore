@@ -3,3 +3,5 @@ __test__/
 
 *.log*
 *.lock
+
+.babelrc

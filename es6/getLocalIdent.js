@@ -1,6 +1,6 @@
-const miniClassName = require('./index.js');
+import miniClassName from './miniClassNames';
 
-module.exports = function (options) {
+export default function (options) {
   const generate = miniClassName(options);
   const map = new Map();
 
