@@ -18,8 +18,8 @@ function createClassName(acc, startChar, endChar) {
   let i = 1;
   let className = startChar[acc[0]];
 
-  for (; i < acc.length; i++) {
-    className += endChar[acc[i]];
+  while (i < acc.length) {
+    className += endChar[acc[i++]];
   }
 
   return className;
