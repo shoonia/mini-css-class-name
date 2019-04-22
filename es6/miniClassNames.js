@@ -35,7 +35,23 @@ function createHash(chars, size) {
   return hash;
 }
 
+function error(message) {
+  return new TypeError('mini-css-class-name: ' + message);
+}
+
 export default function ({ prefix = "", suffix = "", hash = 0 } = {}) {
+  if (typeof prefix !== 'string') {
+    throw error('prefix must be a String');
+  }
+
+  if (typeof suffix !== 'string') {
+    throw error('suffix must be a String');
+  }
+
+  if (typeof hash !== 'number') {
+    throw error('hash must be a Number');
+  }
+
   const firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   const afterChar = firstChar + "0123456789-";
 

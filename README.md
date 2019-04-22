@@ -79,11 +79,11 @@ import { getLocalIdent } from 'mini-css-class-name';
 ```
 ## Options
 
-|     Name            |    Type           | Default          | Description                        |
-|:-------------------:|:-----------------:|:----------------:|:----------------------------------:|
-|  **prefix**         |  `{String}`       |  `""`            |  prefix added to each class name
-|  **suffix**         |  `{String}`       |  `""`            |  suffix added to each class name
-|   **hash**          |  `{Number}`       |   `0`            |  length of generating a hash key
+|    Name    |   Type     | Default | Description                      |
+|:----------:|:----------:|:-------:|:--------------------------------:|
+| **prefix** | `{String}` |  `""`   |  prefix added to each class name
+| **suffix** | `{String}` |  `""`   |  suffix added to each class name
+|  **hash**  | `{Number}` |   `0`   |  length of generating a hash key
 
 ## License
 
