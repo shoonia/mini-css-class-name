@@ -55,7 +55,10 @@ generate(); // a
 **webpack.config.js**
 ```js
 const getLocalIdent = require('mini-css-class-name/css-loader');
+// or ES6
+// import { getLocalIdent } from 'mini-css-class-name';
 
+// css-loader < v3.0.0
 module.exports = {
   module: {
     rules: [
@@ -69,14 +72,26 @@ module.exports = {
       },
     ],
   },
-};
+}
+
+// css-loader >= v3.0.0
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        options: {
+          modules: {
+            getLocalIdent: getLocalIdent(/* options */),
+          },
+        },
+      },
+    ],
+  },
+}
 ```
 
-### ES6
-
-```js
-import { getLocalIdent } from 'mini-css-class-name';
-```
 ## Options
 
 |    Name    |   Type     | Default | Description                      |

@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "module": "./es2015/index.js",
@@ -9,9 +9,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/register": "^7.4.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/register": "^7.4.4",
     "mocha": "^6.1.4"
   },
   "repository": {
