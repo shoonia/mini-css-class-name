@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "module": "./es2015/index.js",

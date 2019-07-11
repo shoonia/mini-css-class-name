@@ -14,12 +14,12 @@ function growUp(acc, index, start, end) {
   return growUp(acc, (index + 1), end, end);
 }
 
-function createClassName(acc, startChar, endChar) {
+function createClassName(acc, chars) {
   let i = 1;
-  let className = startChar[acc[0]];
+  let className = chars[acc[0]];
 
   while (i < acc.length) {
-    className += endChar[acc[i++]];
+    className += chars[acc[i++]];
   }
 
   return className;
@@ -57,9 +57,6 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
 
   const FIRST_LENGTH = firstChar.length - 1;
   const AFTER_LENGTH = afterChar.length - 1;
-
-  // If we have a prefix, we don't need the first char collection
-  const startChar = (prefix.length < 1) ? firstChar : afterChar;
   const START_LENGH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
 
   const getHash = (hash > 0)
@@ -70,7 +67,7 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
 
   function generate() {
     const acc = growUp(tail, 0, START_LENGH, AFTER_LENGTH);
-    const className = createClassName(acc, startChar, afterChar);
+    const className = createClassName(acc, afterChar);
 
     return prefix + className + suffix + getHash();
   };
