@@ -1,4 +1,4 @@
-import miniClassName from './miniClassNames';
+import miniClassName from "./miniClassNames.js";
 
 export default function (options) {
   const generate = miniClassName(options);
@@ -16,5 +16,5 @@ export default function (options) {
     map.set(key, className);
 
     return className;
-  }
+  };
 }

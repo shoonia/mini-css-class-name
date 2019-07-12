@@ -36,20 +36,20 @@ function createHash(chars, size) {
 }
 
 function error(message) {
-  return new TypeError('mini-css-class-name: ' + message);
+  return new TypeError("mini-css-class-name: " + message);
 }
 
 module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
-  if (typeof prefix !== 'string') {
-    throw error('prefix must be a String');
+  if (typeof prefix !== "string") {
+    throw error("prefix must be a String");
   }
 
-  if (typeof suffix !== 'string') {
-    throw error('suffix must be a String');
+  if (typeof suffix !== "string") {
+    throw error("suffix must be a String");
   }
 
-  if (typeof hash !== 'number') {
-    throw error('hash must be a Number');
+  if (typeof hash !== "number") {
+    throw error("hash must be a Number");
   }
 
   const firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
@@ -70,11 +70,11 @@ module.exports = function ({ prefix = "", suffix = "", hash = 0 } = {}) {
     const className = createClassName(acc, afterChar);
 
     return prefix + className + suffix + getHash();
-  };
+  }
 
   generate.reset = function () {
     tail.length = 0;
-  }
+  };
 
   return generate;
-}
+};

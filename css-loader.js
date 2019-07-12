@@ -1,4 +1,4 @@
-const miniClassName = require('./index.js');
+const miniClassName = require("./index.js");
 
 module.exports = function (options) {
   const generate = miniClassName(options);
@@ -16,5 +16,5 @@ module.exports = function (options) {
     map.set(key, className);
 
     return className;
-  }
-}
+  };
+};

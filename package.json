@@ -5,13 +5,17 @@
   "main": "index.js",
   "module": "./es2015/index.js",
   "scripts": {
-    "test": "mocha --require @babel/register __test__/**/*.js"
+    "mocha": "mocha --require @babel/register __test__/**/*.js",
+    "eslint": "eslint . --fix",
+    "test": "npm run eslint && npm run mocha"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@babel/register": "^7.4.4",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
     "mocha": "^6.1.4"
   },
   "repository": {

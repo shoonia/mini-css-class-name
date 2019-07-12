@@ -1,2 +1,2 @@
-export { default as getLocalIdent } from './getLocalIdent';
-export { default } from './miniClassNames';
+export { default as getLocalIdent } from "./getLocalIdent.js";
+export { default } from "./miniClassNames.js";

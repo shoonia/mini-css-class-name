@@ -1,10 +1,10 @@
-import assert from 'assert';
+import assert from "assert";
 
-import miniClassName from '../es6';
+import miniClassName from "../es6";
 
-describe('Create className (es6)', () => {
+describe("Create className (es6)", () => {
 
-  it('100 000 unique className', () => {
+  it("100 000 unique className", () => {
     const generate = miniClassName();
     const classList = Array(1e5).fill(null).map(() => generate());
     const uniqueList = Array.from(new Set(classList));
@@ -13,9 +13,9 @@ describe('Create className (es6)', () => {
     assert.equal(classList.length, uniqueList.length);
   });
 
-  it('100 000 unique className with prefix', () => {
+  it("100 000 unique className with prefix", () => {
     const generate = miniClassName({
-      prefix: 'prefix--',
+      prefix: "prefix--",
     });
 
     const classList = Array(1e5).fill(null).map(() => generate());
@@ -25,9 +25,9 @@ describe('Create className (es6)', () => {
     assert.equal(classList.length, uniqueList.length);
   });
 
-  it('100 000 unique className with suffix', () => {
+  it("100 000 unique className with suffix", () => {
     const generate = miniClassName({
-      suffix: '--suffix',
+      suffix: "--suffix",
     });
 
     const classList = Array(1e5).fill(null).map(() => generate());
@@ -37,7 +37,7 @@ describe('Create className (es6)', () => {
     assert.equal(classList.length, uniqueList.length);
   });
 
-  it('100 000 unique className with hash', () => {
+  it("100 000 unique className with hash", () => {
     const generate = miniClassName({
       hash: 5,
     });
@@ -49,10 +49,10 @@ describe('Create className (es6)', () => {
     assert.equal(classList.length, uniqueList.length);
   });
 
-  it('100 000 unique className with all options', () => {
+  it("100 000 unique className with all options", () => {
     const generate = miniClassName({
-      prefix: 'prefix--',
-      suffix: '--suffix',
+      prefix: "prefix--",
+      suffix: "--suffix",
       hash: 5,
     });
 
@@ -62,5 +62,4 @@ describe('Create className (es6)', () => {
     generate.reset();
     assert.equal(classList.length, uniqueList.length);
   });
-
 });
