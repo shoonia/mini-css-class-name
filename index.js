@@ -11,12 +11,12 @@ function growUp(acc, index, start, end) {
 
   acc[index] = 0;
 
-  return growUp(acc, (index + 1), end, end);
+  return growUp(acc, ++index, end, end);
 }
 
 function createClassName(acc, chars) {
-  let i = 1;
-  let className = chars[acc[0]];
+  let i = 0;
+  let className = "";
 
   while (i < acc.length) {
     className += chars[acc[i++]];
