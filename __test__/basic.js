@@ -71,5 +71,19 @@ describe("Create className", () => {
       const className = generate();
       assert.equal(/[^a-z_]/i.test(className[0]), false);
     });
+
+    generate.reset();
+  });
+
+  it("Reset method", () => {
+    const generate = miniClassName();
+
+    const list1 = array1e5.map(() => generate());
+    generate.reset();
+
+    const list2 = array1e5.map(() => generate());
+    generate.reset();
+
+    assert.equal(list1.join(), list2.join());
   });
 });
