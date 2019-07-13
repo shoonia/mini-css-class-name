@@ -1,9 +1,9 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
-  "module": "./es2015/index.js",
+  "module": "es6/index.js",
   "scripts": {
     "mocha": "mocha --require @babel/register __test__/**/*.js",
     "eslint": "eslint . --fix",
