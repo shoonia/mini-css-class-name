@@ -34,7 +34,7 @@ generate(); // x__b--ei27
 generate(); // x__c--e80f
 ```
 
-## Reset
+## Reset method
 
 ```js
 import miniClassNames from 'mini-css-class-name';
@@ -54,10 +54,12 @@ generate(); // a
 
 **webpack.config.js**
 ```js
+// CommonJS
 const getLocalIdent = require('mini-css-class-name/css-loader');
-// or ES6
-// import { getLocalIdent } from 'mini-css-class-name';
-
+// ES6
+import { getLocalIdent } from 'mini-css-class-name';
+```
+```js
 // css-loader < v3.0.0
 module.exports = {
   module: {
@@ -94,11 +96,11 @@ module.exports = {
 
 ## Options
 
-|    Name    |   Type     | Default | Description                      |
-|:----------:|:----------:|:-------:|:--------------------------------:|
-| **prefix** | `{String}` |  `""`   |  prefix added to each class name
-| **suffix** | `{String}` |  `""`   |  suffix added to each class name
-|  **hash**  | `{Number}` |   `0`   |  length of generating a hash key
+|    Name    |   Type     | Default | Description |
+|:----------:|:----------:|:-------:|:-----------:|
+| **prefix** | `{String}` |  `""`   |  a custom prefix will be added to each class name
+| **suffix** | `{String}` |  `""`   |  a custom suffix will be added to each class name
+|  **hash**  | `{Number}` |   `0`   |  a length of generating a random hash tail for each class name.
 
 ## License
 
