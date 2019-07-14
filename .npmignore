@@ -5,3 +5,5 @@ __test__/
 *.lock
 
 .babelrc
+.gitignore
+.eslinrc

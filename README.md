@@ -1,7 +1,8 @@
 # mini-css-class-name
-Minimum size unique CSS class names generator
+Minimum size unique CSS class names generator.
+It can be used with Webpack ecosystem. [more](#css-modules)
 
-# Install
+## Install
 
 ```bash
 npm i mini-css-class-name
@@ -59,6 +60,7 @@ const getLocalIdent = require('mini-css-class-name/css-loader');
 // ES6
 import { getLocalIdent } from 'mini-css-class-name';
 ```
+There are two ways to plug it's depending on css-loader version.
 ```js
 // css-loader < v3.0.0
 module.exports = {
@@ -93,6 +95,7 @@ module.exports = {
   },
 }
 ```
+[Documentation about css-modules](https://github.com/webpack-contrib/css-loader#modules)
 
 ## Options
 
