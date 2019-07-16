@@ -5,7 +5,7 @@
   "main": "index.js",
   "module": "es6/index.js",
   "scripts": {
-    "mocha": "mocha --require @babel/register __test__/**/*.js",
+    "mocha": "mocha --require @babel/register __test__/**/*.test.js",
     "eslint": "eslint . --fix",
     "test": "npm run eslint && npm run mocha"
   },
