@@ -1,6 +1,6 @@
 import assert from "assert";
 
-import miniClassName from "../es6/miniClassNames";
+import miniClassName from "../es6";
 
 describe("Errors (es6)", () => {
   it("Invalid ops", () => {
@@ -8,7 +8,7 @@ describe("Errors (es6)", () => {
       miniClassName(null);
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 
@@ -17,7 +17,7 @@ describe("Errors (es6)", () => {
       miniClassName({ prefix: null });
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 
@@ -26,7 +26,7 @@ describe("Errors (es6)", () => {
       miniClassName({ suffix: null });
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 
@@ -35,7 +35,7 @@ describe("Errors (es6)", () => {
       miniClassName({ hash: null });
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 });

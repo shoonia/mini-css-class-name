@@ -8,7 +8,7 @@ describe("Errors", () => {
       miniClassName(null);
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 
@@ -17,7 +17,7 @@ describe("Errors", () => {
       miniClassName({ prefix: null });
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 
@@ -26,7 +26,7 @@ describe("Errors", () => {
       miniClassName({ suffix: null });
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 
@@ -35,7 +35,7 @@ describe("Errors", () => {
       miniClassName({ hash: null });
       throw new Error();
     } catch (error) {
-      assert.equal(error instanceof TypeError, true);
+      assert.ok(error instanceof TypeError);
     }
   });
 });
