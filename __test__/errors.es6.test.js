@@ -38,4 +38,13 @@ describe("Errors (es6)", () => {
       assert.ok(error instanceof TypeError);
     }
   });
+
+  it("Invalid safe", () => {
+    try {
+      miniClassName({ safe: null });
+      throw new Error();
+    } catch (error) {
+      assert.ok(error instanceof TypeError);
+    }
+  });
 });

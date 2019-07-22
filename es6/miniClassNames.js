@@ -39,7 +39,12 @@ function error(message) {
   return new TypeError("mini-css-class-name: " + message);
 }
 
-export default function ({ prefix = "", suffix = "", hash = 0 } = {}) {
+export default function ({
+  prefix = "",
+  suffix = "",
+  hash = 0,
+  safe = true
+} = {}) {
   if (typeof prefix !== "string") {
     throw error("prefix must be a String");
   }
@@ -52,8 +57,20 @@ export default function ({ prefix = "", suffix = "", hash = 0 } = {}) {
     throw error("hash must be a Number");
   }
 
-  const firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
-  const afterChar = firstChar + "0123456789-";
+  if (typeof safe !== "boolean") {
+    throw error("safe must be a Boolean");
+  }
+
+  let firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+  let afterChar = firstChar + "0123456789-";
+
+  if (safe) {
+    // avoiding AdBlock blocking [issues]: https://github.com/shoonia/mini-css-class-name/issues/1
+    const regex = /d/gi;
+
+    firstChar = firstChar.replace(regex, "");
+    afterChar = afterChar.replace(regex, "");
+  }
 
   const FIRST_LENGTH = firstChar.length - 1;
   const AFTER_LENGTH = afterChar.length - 1;
