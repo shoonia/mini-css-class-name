@@ -6,45 +6,55 @@ describe("Errors", () => {
   it("Invalid ops", () => {
     try {
       miniClassName(null);
-      throw new Error();
     } catch (error) {
-      assert.ok(error instanceof TypeError);
+      return assert.ok(true);
     }
+    assert.fail();
   });
 
   it("Invalid prefix", () => {
     try {
       miniClassName({ prefix: null });
-      throw new Error();
     } catch (error) {
-      assert.ok(error instanceof TypeError);
+      return assert.ok(true);
     }
+    assert.fail();
   });
 
   it("Invalid suffix", () => {
     try {
       miniClassName({ suffix: null });
-      throw new Error();
     } catch (error) {
-      assert.ok(error instanceof TypeError);
+      return assert.ok(true);
     }
+    assert.fail();
   });
 
   it("Invalid hash", () => {
     try {
       miniClassName({ hash: null });
-      throw new Error();
     } catch (error) {
-      assert.ok(error instanceof TypeError);
+      return assert.ok(true);
     }
+    assert.fail();
   });
 
-  it("Invalid safe", () => {
+  it("Invalid excludePattern", () => {
     try {
-      miniClassName({ safe: null });
-      throw new Error();
+      miniClassName({ excludePattern: "" });
     } catch (error) {
-      assert.ok(error instanceof TypeError);
+      return assert.ok(true);
     }
+    assert.fail();
+  });
+
+  it("excludePattern is null", () => {
+    miniClassName({ excludePattern: null });
+    assert.ok(true);
+  });
+
+  it("excludePattern is RegExp", () => {
+    miniClassName({ excludePattern: /regex/ });
+    assert.ok(true);
   });
 });

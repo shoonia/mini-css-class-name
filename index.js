@@ -43,7 +43,7 @@ module.exports = function ({
   prefix = "",
   suffix = "",
   hash = 0,
-  safe = true
+  excludePattern = null,
 } = {}) {
   if (typeof prefix !== "string") {
     throw error("prefix must be a String");
@@ -57,20 +57,12 @@ module.exports = function ({
     throw error("hash must be a Number");
   }
 
-  if (typeof safe !== "boolean") {
-    throw error("safe must be a Boolean");
+  if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
+    throw error("excludePattern must be a RegExp");
   }
 
   let firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   let afterChar = firstChar + "0123456789-";
-
-  if (safe) {
-    // avoiding AdBlock blocking [issues]: https://github.com/shoonia/mini-css-class-name/issues/1
-    const regex = /d/gi;
-
-    firstChar = firstChar.replace(regex, "");
-    afterChar = afterChar.replace(regex, "");
-  }
 
   const FIRST_LENGTH = firstChar.length - 1;
   const AFTER_LENGTH = afterChar.length - 1;
