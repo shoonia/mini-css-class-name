@@ -97,6 +97,33 @@ module.exports = {
 ```
 [Documentation about css-modules](https://github.com/webpack-contrib/css-loader#modules)
 
+You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2
+
+**gatsby-node.js**
+
+```js
+const { cloneDeepWith, isObject } = require('lodash');
+const miniClassNames = require('mini-css-class-name/css-loader');
+
+const generate = miniClassNames(/* options */);
+
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig();
+
+  config.module.rules = config.module.rules.map(rule => cloneDeepWith(rule, (value) => {
+    if (isObject(value) && value.modules) {
+      return {
+        ...value,
+        localIdentName: undefined,
+        getLocalIdent: generate,
+      };
+    }
+  }));
+
+  actions.replaceWebpackConfig(config);
+};
+```
+
 ## Options
 
 |    Name    |   Type     | Default | Description |
