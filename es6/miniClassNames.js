@@ -64,6 +64,11 @@ export default function ({
   let firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   let afterChar = firstChar + "0123456789-";
 
+  if (excludePattern !== null) {
+    firstChar = firstChar.replace(excludePattern, "");
+    afterChar = afterChar.replace(excludePattern, "");
+  }
+
   const FIRST_LENGTH = firstChar.length - 1;
   const AFTER_LENGTH = afterChar.length - 1;
   const START_LENGH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;

@@ -30,9 +30,9 @@ const generate = miniClassNames({
   hash: 4,
 });
 
-generate(); // x__a--e9di
-generate(); // x__b--ei27
-generate(); // x__c--e80f
+generate(); // x__a--ZwkO
+generate(); // x__b--9dO4
+generate(); // x__c--rRI0
 ```
 
 ## Reset method
@@ -49,6 +49,15 @@ generate(); // c
 generate.reset();
 
 generate(); // a
+```
+
+## Exclude Pattern
+
+You can use a regular expression to exclude any characters.
+
+```js
+const generate = miniClassName({ excludePattern: /[_-]/g }) // remove underscore and dash
+const generateABC = miniClassName({ excludePattern: /[^a-z]/gi }); // keep only alphabet characters
 ```
 
 ## CSS Modules
@@ -126,11 +135,12 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 
 ## Options
 
-|    Name    |   Type     | Default | Description |
-|:----------:|:----------:|:-------:|:-----------:|
-| **prefix** | `{String}` |  `""`   |  a custom prefix will be added to each class name
-| **suffix** | `{String}` |  `""`   |  a custom suffix will be added to each class name
-|  **hash**  | `{Number}` |   `0`   |  a length of generating a random hash tail for each class name.
+|    Name          |   Type     | Default | Description |
+|:----------------:|:----------:|:-------:|:-----------:|
+| **prefix**       | `{String}` |  `""`   | a custom prefix will be added to each class name
+| **suffix**       | `{String}` |  `""`   | a custom suffix will be added to each class name
+|  **hash**        | `{Number}` |   `0`   | a length of generating a random hash tail for each class name.
+|**excludePattern**| `{RegExp}` | `null`  | a regular expression for removing characters
 
 ## License
 
