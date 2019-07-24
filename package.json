@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "module": "es6/index.js",
@@ -36,7 +36,7 @@
     "modules",
     "Identifiers",
     "webpack",
-    "class"
+    "gatsby"
   ],
   "author": {
     "name": "Alexander Zaytsev",

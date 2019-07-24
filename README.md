@@ -1,9 +1,8 @@
 # mini-css-class-name
 Minimum size unique CSS class names generator.
-It can be used with Webpack ecosystem. [more](#css-modules)
+It can be used with Webpack and Gatsby ecosystems. [more](#css-modules)
 
 ## Install
-
 ```bash
 npm i mini-css-class-name
 # or
@@ -11,22 +10,20 @@ yarn add mini-css-class-name
 ```
 
 ## Start
-
 ```js
 // CommonJS
-const miniClassNames = require('mini-css-class-name');
+const miniClassNames = require("mini-css-class-name");
 // ES6
-import miniClassName from 'mini-css-class-name';
+import miniClassName from "mini-css-class-name";
 ```
 
 ## Basic
-
 ```js
-import miniClassNames from 'mini-css-class-name';
+import miniClassNames from "mini-css-class-name";
 
 const generate = miniClassNames({
-  prefix: 'x__',
-  suffix: '--',
+  prefix: "x__",
+  suffix: "--",
   hash: 4,
 });
 
@@ -36,9 +33,8 @@ generate(); // x__c--rRI0
 ```
 
 ## Reset method
-
 ```js
-import miniClassNames from 'mini-css-class-name';
+import miniClassNames from "mini-css-class-name";
 
 const generate = miniClassNames();
 
@@ -52,11 +48,9 @@ generate(); // a
 ```
 
 ## Exclude Pattern
-
 You can use a regular expression to exclude any characters.
-
 ```js
-const generate = miniClassName({ excludePattern: /[_-]/g }) // remove underscore and dash
+const generate = miniClassName({ excludePattern: /[_-]/g }); // remove underscore and dash
 const generateABC = miniClassName({ excludePattern: /[^a-z]/gi }); // keep only alphabet characters
 ```
 
@@ -65,9 +59,9 @@ const generateABC = miniClassName({ excludePattern: /[^a-z]/gi }); // keep only 
 **webpack.config.js**
 ```js
 // CommonJS
-const getLocalIdent = require('mini-css-class-name/css-loader');
+const getLocalIdent = require("mini-css-class-name/css-loader");
 // ES6
-import { getLocalIdent } from 'mini-css-class-name';
+import { getLocalIdent } from "mini-css-class-name";
 ```
 There are two ways to plug it's depending on css-loader version.
 ```js
@@ -77,7 +71,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loader: 'css-loader',
+        loader: "css-loader",
         options: {
           modules: true,
           getLocalIdent: getLocalIdent(/* options */),
@@ -85,7 +79,7 @@ module.exports = {
       },
     ],
   },
-}
+};
 
 // css-loader >= v3.0.0
 module.exports = {
@@ -93,7 +87,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loader: 'css-loader',
+        loader: "css-loader",
         options: {
           modules: {
             getLocalIdent: getLocalIdent(/* options */),
@@ -102,17 +96,17 @@ module.exports = {
       },
     ],
   },
-}
+};
 ```
 [Documentation about css-modules](https://github.com/webpack-contrib/css-loader#modules)
 
+## Gatsby
 You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2
 
 **gatsby-node.js**
-
 ```js
-const { cloneDeepWith, isObject } = require('lodash');
-const miniClassNames = require('mini-css-class-name/css-loader');
+const { cloneDeepWith, isObject } = require("lodash");
+const miniClassNames = require("mini-css-class-name/css-loader");
 
 const generate = miniClassNames(/* options */);
 
@@ -134,7 +128,6 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 ```
 
 ## Options
-
 |    Name          |   Type     | Default | Description |
 |:----------------:|:----------:|:-------:|:-----------:|
 | **prefix**       | `{String}` |  `""`   | a custom prefix will be added to each class name
@@ -143,5 +136,4 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 |**excludePattern**| `{RegExp}` | `null`  | a regular expression for removing characters
 
 ## License
-
 [MIT](./LICENSE)

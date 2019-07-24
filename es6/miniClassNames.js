@@ -25,7 +25,7 @@ function createClassName(acc, chars) {
   return className;
 }
 
-function createHash(chars, size) {
+function createHash(size, chars) {
   let hash = "";
 
   while (0 < size--) {
@@ -74,7 +74,7 @@ export default function ({
   const START_LENGH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
 
   const getHash = (hash > 0)
-    ? createHash.bind(null, afterChar, hash)
+    ? createHash.bind(null, hash, afterChar)
     : function () { return ""; };
 
   const tail = [];
@@ -88,6 +88,10 @@ export default function ({
 
   generate.reset = function () {
     tail.length = 0;
+  };
+
+  generate.createHash = function (size = hash, chars = afterChar) {
+    return createHash(size, chars);
   };
 
   return generate;
