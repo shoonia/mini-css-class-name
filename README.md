@@ -64,9 +64,13 @@ const getLocalIdent = require("mini-css-class-name/css-loader");
 import { getLocalIdent } from "mini-css-class-name";
 ```
 There are two ways to plug it's depending on css-loader version.
+
+**css-loader >= 1.0.0 || >= 2.0.0**
 ```js
-// css-loader < v3.0.0
 module.exports = {
+
+  // webpack config ...
+
   module: {
     rules: [
       {
@@ -80,9 +84,13 @@ module.exports = {
     ],
   },
 };
-
-// css-loader >= v3.0.0
+```
+**css-loader >= 3.0.0**
+```js
 module.exports = {
+
+  // webpack config ...
+
   module: {
     rules: [
       {
