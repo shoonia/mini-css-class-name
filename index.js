@@ -39,6 +39,17 @@ function error(message) {
   return new TypeError("mini-css-class-name: " + message);
 }
 
+/**
+ * @typedef {Object} Options
+ * @property {string} [prefix = ""] A custom prefix will be added to each class name
+ * @property {string} [suffix = ""] A custom suffix will be added to each class name
+ * @property {number} [hash = 0] A length of generating a random hash tail for each class name
+ * @property {RegExp} [excludePattern = null] A regular expression for removing characters
+ */
+
+/**
+ * @param {Options}
+ */
 module.exports = function ({
   prefix = "",
   suffix = "",

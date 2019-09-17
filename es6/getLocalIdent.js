@@ -1,19 +1,23 @@
 import miniClassName from "./miniClassNames.js";
 
+/**
+ * @param {import('./miniClassNames').Options} options
+ * @returns getLocalIdent
+ */
 export default function (options) {
   const generate = miniClassName(options);
-  const map = new Map();
+  const cache = new Map();
 
   return function (context, _, localName) {
     const key = context.resourcePath + localName;
 
-    if (map.has(key)) {
-      return map.get(key);
+    if (cache.has(key)) {
+      return cache.get(key);
     }
 
     const className = generate();
 
-    map.set(key, className);
+    cache.set(key, className);
 
     return className;
   };
