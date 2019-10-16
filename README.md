@@ -1,6 +1,6 @@
 # mini-css-class-name
 Minimum size unique CSS class names generator.
-It can be used with Webpack and Gatsby ecosystems. [more](#css-modules)
+It can be used with [Webpack](#css-modules) and [Gatsby](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme) ecosystems.
 
 ## Install
 ```bash
@@ -111,32 +111,7 @@ module.exports = {
 ## Gatsby
 You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2
 
-**gatsby-node.js**
-```js
-const cloneDeepWith = require("lodash/cloneDeepWith");
-const miniClassNames = require("mini-css-class-name/css-loader");
-
-const generate = miniClassNames(/* options */);
-
-exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
-  // For production builds state: 'build-javascript' and 'build-html'
-  if (stage.includes("build")) {
-    const config = getConfig();
-
-    config.module.rules = cloneDeepWith(config.module.rules, (value, key) => {
-      if (key === "options" && value.modules) {
-        return {
-          ...value,
-          localIdentName: undefined,
-          getLocalIdent: generate,
-        };
-      }
-    });
-
-    actions.replaceWebpackConfig(config);
-  }
-};
-```
+> [gatsby-plugin-mini-css-class-name](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme)
 
 ## Options
 |    Name          |   Type     | Default | Description |

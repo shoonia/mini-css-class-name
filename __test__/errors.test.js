@@ -21,9 +21,27 @@ describe("Errors", () => {
     assert.fail();
   });
 
+  it("Invalid prefix char", () => {
+    try {
+      miniClassName({ prefix: "#" });
+    } catch (error) {
+      return assert.ok(true);
+    }
+    assert.fail();
+  });
+
   it("Invalid suffix", () => {
     try {
       miniClassName({ suffix: null });
+    } catch (error) {
+      return assert.ok(true);
+    }
+    assert.fail();
+  });
+
+  it("Invalid suffix char", () => {
+    try {
+      miniClassName({ suffix: "#" });
     } catch (error) {
       return assert.ok(true);
     }

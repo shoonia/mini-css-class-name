@@ -1,12 +1,12 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "module": "es6/index.js",
   "scripts": {
     "mocha": "mocha --require @babel/register __test__/**/*.test.js",
-    "eslint": "eslint . --fix",
+    "eslint": "eslint ./**/*.js --fix",
     "test": "npm run eslint && npm run mocha"
   },
   "dependencies": {},
@@ -21,6 +21,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/shoonia/mini-css-class-name.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shoonia/mini-css-class-name/issues"
   },
   "files": [
     "index.js",
@@ -38,6 +41,7 @@
     "webpack",
     "gatsby"
   ],
+  "homepage": "https://github.com/shoonia/mini-css-class-name#readme",
   "author": {
     "name": "Alexander Zaytsev",
     "email": "zaytsev126@gmail.com",
