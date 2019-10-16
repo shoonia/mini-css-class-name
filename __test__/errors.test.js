@@ -30,6 +30,15 @@ describe("Errors", () => {
     assert.fail();
   });
 
+  it("Invalid prefix start char", () => {
+    try {
+      miniClassName({ prefix: "1abc" });
+    } catch (error) {
+      return assert.ok(true);
+    }
+    assert.fail();
+  });
+
   it("Invalid suffix", () => {
     try {
       miniClassName({ suffix: null });

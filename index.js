@@ -39,8 +39,12 @@ function error(message) {
   return new TypeError("mini-css-class-name: " + message);
 }
 
-function hasSpecSymbols(string) {
+function hasInvalidChars(string) {
   return /[^a-z\d-_]/i.test(string);
+}
+
+function hasInvalidStartChar(string) {
+  return /[^a-z_]/i.test(string[0]);
 }
 
 /**
@@ -63,25 +67,29 @@ module.exports = function ({
   if (typeof prefix !== "string") {
     throw error("`prefix` must be a String");
   }
+
   if (typeof suffix !== "string") {
     throw error("`suffix` must be a String");
   }
+
   if (typeof hash !== "number") {
     throw error("`hash` must be a Number");
   }
+
   if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
     throw error("`excludePattern` must be a RegExp");
   }
-  if (hasSpecSymbols(prefix) || hasSpecSymbols(suffix)) {
-    throw error(
-      "`prefix` and `suffix` can contain only the characters [a-zA-Z0-9] and ISO 10646 characters U+00A0 and higher, "
-      + "plus the hyphen (-) and the underscore (_); they cannot start with a digit, two hyphens, or a hyphen followed by a digit. "
-      + "https://www.w3.org/TR/CSS22/syndata.html#characters"
-    );
+
+  if (hasInvalidChars(prefix) || hasInvalidChars(suffix)) {
+    throw error("`prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);");
+  }
+
+  if (hasInvalidStartChar(prefix)) {
+    throw error("`prefix` cannot start with a digit or hyphens");
   }
 
   let firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
-  let afterChar = firstChar + "0123456789-";
+  let afterChar = firstChar + "-0123456789";
 
   if (excludePattern !== null) {
     firstChar = firstChar.replace(excludePattern, "");
