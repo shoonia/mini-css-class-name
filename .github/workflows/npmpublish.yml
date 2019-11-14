@@ -1,0 +1,20 @@
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: npm install, build and test
+      run: |
+        npm install
+        npm test
