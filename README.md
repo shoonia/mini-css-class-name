@@ -9,19 +9,11 @@ npm i mini-css-class-name
 yarn add mini-css-class-name
 ```
 
-## Start
+## How to use
 ```js
-// CommonJS
-const miniClassNames = require("mini-css-class-name");
-// ES6
-import miniClassName from "mini-css-class-name";
-```
+const miniClassName = require("mini-css-class-name");
 
-## Basic
-```js
-import miniClassNames from "mini-css-class-name";
-
-const generate = miniClassNames({
+const generate = miniClassName({
   prefix: "x__",
   suffix: "--",
   hash: 4,
@@ -34,9 +26,9 @@ generate(); // x__c--rRI0
 
 ## Reset method
 ```js
-import miniClassNames from "mini-css-class-name";
+const miniClassName = require("mini-css-class-name");
 
-const generate = miniClassNames();
+const generate = miniClassName();
 
 generate(); // a
 generate(); // b
@@ -50,18 +42,18 @@ generate(); // a
 ## Exclude Pattern
 You can use a regular expression to exclude any characters.
 ```js
-const generate = miniClassName({ excludePattern: /[_-]/g }); // remove underscore and dash
-const generateABC = miniClassName({ excludePattern: /[^a-z]/gi }); // keep only alphabet characters
+// remove underscore and dash
+const generate = miniClassName({ excludePattern: /[_-]/g });
+
+// keep only alphabet characters
+const generateABC = miniClassName({ excludePattern: /[^a-z]/gi });
 ```
 
 ## CSS Modules
 
 **webpack.config.js**
 ```js
-// CommonJS
-const getLocalIdent = require("mini-css-class-name/css-loader");
-// ES6
-import { getLocalIdent } from "mini-css-class-name";
+const createLocalIdent = require("mini-css-class-name/css-loader");
 ```
 There are two ways to plug it's depending on css-loader version.
 
@@ -78,7 +70,7 @@ module.exports = {
         loader: "css-loader",
         options: {
           modules: true,
-          getLocalIdent: getLocalIdent(/* options */),
+          getLocalIdent: createLocalIdent(/* options */),
         },
       },
     ],
@@ -98,7 +90,7 @@ module.exports = {
         loader: "css-loader",
         options: {
           modules: {
-            getLocalIdent: getLocalIdent(/* options */),
+            getLocalIdent: createLocalIdent(/* options */),
           },
         },
       },

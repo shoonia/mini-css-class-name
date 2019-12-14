@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint **/*.js",
-    "lint-ci": "eslint index.js css-loader.js tests/**.test.js",
+    "lint-ci": "eslint index.js css-loader.js tests/**.js",
     "test": "jest tests/**.test.js"
   },
   "devDependencies": {
