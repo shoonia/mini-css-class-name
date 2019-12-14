@@ -1,12 +1,12 @@
-__test__/
 .github/
 node_modules/
+tests/
 
 *.log*
 *.lock
 
 package-lock.json
 .DS_Store
-.eslinrc
+.eslintrc
 .gitignore
 .npmrc

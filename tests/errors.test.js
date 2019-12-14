@@ -3,31 +3,31 @@ const miniClassName = require("../index.js");
 describe("Errors", () => {
   const run = (ops) => () => miniClassName(ops);
 
-  it("Invalid ops", () => {
+  it("should be invalid options", () => {
     expect(run(null)).toThrow(TypeError);
   });
 
-  it("Invalid prefix", () => {
+  it("should be invalid prefix", () => {
     expect(run({ prefix: null })).toThrow(TypeError);
   });
 
-  it("Invalid suffix", () => {
+  it("should be invalid suffix", () => {
     expect(run({ suffix: null })).toThrow(TypeError);
   });
 
-  it("Invalid hash", () => {
+  it("should be invalid hash", () => {
     expect(run({ hash: null })).toThrow(TypeError);
   });
 
-  it("Invalid excludePattern", () => {
+  it("should be invalid excludePattern", () => {
     expect(run({ excludePattern: "" })).toThrow(TypeError);
   });
 
-  it("excludePattern is null", () => {
+  it("shouldn't be error, excludePattern is null", () => {
     miniClassName({ excludePattern: null });
   });
 
-  it("excludePattern is RegExp", () => {
+  it("shouldn't be error, excludePattern is RegExp", () => {
     miniClassName({ excludePattern: /regex/ });
   });
 });
