@@ -1,20 +1,19 @@
-import assert from "assert";
 
-import miniClassName from "../index.js";
+const miniClassName = require("../index.js");
 
 describe("Create className", () => {
   const array1e5 = Array(1e5).fill(null);
 
-  it("100 000 unique className", () => {
+  it("should be 100 000 unique className", () => {
     const generate = miniClassName();
     const classList = array1e5.map(() => generate());
     const uniqueList = Array.from(new Set(classList));
 
     generate.reset();
-    assert.equal(classList.length, uniqueList.length);
+    expect(classList.length).toBe(uniqueList.length);
   });
 
-  it("100 000 unique className with prefix", () => {
+  it("should be 100 000 unique className with prefix", () => {
     const generate = miniClassName({
       prefix: "prefix--",
     });
@@ -23,10 +22,10 @@ describe("Create className", () => {
     const uniqueList = Array.from(new Set(classList));
 
     generate.reset();
-    assert.equal(classList.length, uniqueList.length);
+    expect(classList.length).toBe(uniqueList.length);
   });
 
-  it("100 000 unique className with suffix", () => {
+  it("should be 100 000 unique className with suffix", () => {
     const generate = miniClassName({
       suffix: "--suffix",
     });
@@ -35,10 +34,10 @@ describe("Create className", () => {
     const uniqueList = Array.from(new Set(classList));
 
     generate.reset();
-    assert.equal(classList.length, uniqueList.length);
+    expect(classList.length).toBe(uniqueList.length);
   });
 
-  it("100 000 unique className with hash", () => {
+  it("should be 100 000 unique className with hash", () => {
     const generate = miniClassName({
       hash: 5,
     });
@@ -47,10 +46,10 @@ describe("Create className", () => {
     const uniqueList = Array.from(new Set(classList));
 
     generate.reset();
-    assert.equal(classList.length, uniqueList.length);
+    expect(classList.length).toBe(uniqueList.length);
   });
 
-  it("100 000 unique className with all options", () => {
+  it("should be 100 000 unique className with all options", () => {
     const generate = miniClassName({
       prefix: "prefix--",
       suffix: "--suffix",
@@ -61,21 +60,21 @@ describe("Create className", () => {
     const uniqueList = Array.from(new Set(classList));
 
     generate.reset();
-    assert.equal(classList.length, uniqueList.length);
+    expect(classList.length).toBe(uniqueList.length);
   });
 
-  it("Valid first character class name", () => {
+  it("should be valid first character class name", () => {
     const generate = miniClassName();
 
     array1e5.forEach(() => {
       const className = generate();
-      assert.equal(/[^a-z_]/i.test(className[0]), false);
+      expect(/[^a-z_]/i.test(className[0])).toBeFalsy();
     });
 
     generate.reset();
   });
 
-  it("Reset method", () => {
+  it("should be reset", () => {
     const generate = miniClassName();
 
     const list1 = array1e5.map(() => generate());
@@ -84,6 +83,6 @@ describe("Create className", () => {
     const list2 = array1e5.map(() => generate());
     generate.reset();
 
-    assert.equal(list1.join(), list2.join());
+    expect(list1.join()).toBe(list2.join());
   });
 });

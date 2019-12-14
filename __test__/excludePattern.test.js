@@ -1,41 +1,39 @@
-import assert from "assert";
-
-import miniClassName from "../index.js";
+const miniClassName = require("../index.js");
 
 describe("excludePattern", () => {
   const array1e5 = Array(1e5).fill(null);
 
-  it("remove underscore and dash", () => {
+  it("should be remove underscore and dash", () => {
     const regex = /[_-]/g;
     const generate = miniClassName({ excludePattern: regex });
 
     array1e5.forEach(() => {
       const className = generate();
-      assert.equal(regex.test(className), false);
+      expect(regex.test(className)).toBeFalsy();
     });
 
     generate.reset();
   });
 
-  it("keep only alphabet characters", () => {
+  it("should be keep only alphabet characters", () => {
     const regex = /[^a-z]/gi;
     const generate = miniClassName({ excludePattern: regex });
 
     array1e5.forEach(() => {
       const className = generate();
-      assert.equal(regex.test(className), false);
+      expect(regex.test(className)).toBeFalsy();
     });
 
     generate.reset();
   });
 
-  it("remove letter `d`", () => {
+  it("should be remove letter `d`", () => {
     const regex = /d/gi;
     const generate = miniClassName({ excludePattern: regex });
 
     array1e5.forEach(() => {
       const className = generate();
-      assert.equal(regex.test(className), false);
+      expect(regex.test(className)).toBeFalsy();
     });
 
     generate.reset();

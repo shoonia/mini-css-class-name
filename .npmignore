@@ -1,10 +1,12 @@
-node_modules/
 __test__/
+.github/
+node_modules/
 
 *.log*
 *.lock
 
-.babelrc
-.eslintignore
+package-lock.json
+.DS_Store
 .eslinrc
 .gitignore
+.npmrc
