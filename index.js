@@ -39,6 +39,14 @@ function error(message) {
   return new TypeError("mini-css-class-name: " + message);
 }
 
+function hasInvalidChars(string) {
+  return /[^\w-]/.test(string);
+}
+
+function hasInvalidStartChar(string) {
+  return /[^a-z_]/i.test(string[0]);
+}
+
 /**
  * @typedef {Object} Options
  * @property {string} [prefix = ""] A custom prefix will be added to each class name
@@ -57,23 +65,31 @@ module.exports = function ({
   excludePattern = null,
 } = {}) {
   if (typeof prefix !== "string") {
-    throw error("prefix must be a String");
+    throw error("`prefix` must be a String");
   }
 
   if (typeof suffix !== "string") {
-    throw error("suffix must be a String");
+    throw error("`suffix` must be a String");
   }
 
   if (typeof hash !== "number") {
-    throw error("hash must be a Number");
+    throw error("`hash` must be a Number");
   }
 
   if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
-    throw error("excludePattern must be a RegExp");
+    throw error("`excludePattern` must be a RegExp");
+  }
+
+  if (hasInvalidChars(prefix) || hasInvalidChars(suffix)) {
+    throw error("`prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);");
+  }
+
+  if (hasInvalidStartChar(prefix)) {
+    throw error("`prefix` cannot start with a digit or hyphens");
   }
 
   let firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
-  let afterChar = firstChar + "0123456789-";
+  let afterChar = firstChar + "-0123456789";
 
   if (excludePattern !== null) {
     firstChar = firstChar.replace(excludePattern, "");
