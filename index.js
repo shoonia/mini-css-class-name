@@ -1,3 +1,10 @@
+/**
+ * @param {Array} acc - accumulator for string indexes
+ * @param {number} index - currnet index
+ * @param {number} start - the biggest pasimbe start index
+ * @param {number} end - the biggest possible end index
+ * @returns {Function|Array} recursive itself or increment value accumulator
+ */
 function growUp(acc, index, start, end) {
   if (acc[index] === undefined) {
     acc.push(0);
@@ -14,6 +21,11 @@ function growUp(acc, index, start, end) {
   return growUp(acc, ++index, end, end);
 }
 
+/**
+ * @param {Array} acc - accumulator for string indexes
+ * @param {string} chars - set of letters
+ * @returns {string} class name
+ */
 function createClassName(acc, chars) {
   let i = 0;
   let className = "";
@@ -25,6 +37,11 @@ function createClassName(acc, chars) {
   return className;
 }
 
+/**
+ * @param {number} size - length of hash
+ * @param {string} chars - set of letters
+ * @returns {string} random string
+ */
 function createHash(size, chars) {
   let hash = "";
 
@@ -35,28 +52,41 @@ function createHash(size, chars) {
   return hash;
 }
 
+/**
+ * @param {string} message - validation error
+ * @returns {TypeError} error
+ */
 function error(message) {
   return new TypeError("mini-css-class-name: " + message);
 }
 
-function hasInvalidChars(string) {
-  return /[^\w-]/.test(string);
-}
-
-function hasInvalidStartChar(string) {
-  return /[^a-z_]/i.test(string[0]);
+/**
+ * @param {string} s - custom prefix or suffix
+ * @returns {boolean} has invalid chars
+ */
+function hasInvalidChars(s) {
+  return /[^\w-]/.test(s);
 }
 
 /**
- * @typedef {Object} Options
+ * @param {string} prefix - custom prefix
+ * @returns {boolean} has invalid char
+ */
+function hasInvalidStartChar(prefix) {
+  return /[^a-z_]/i.test(prefix[0]);
+}
+
+/**
+ * @typedef {object} Options
  * @property {string} [prefix = ""] A custom prefix will be added to each class name
  * @property {string} [suffix = ""] A custom suffix will be added to each class name
  * @property {number} [hash = 0] A length of generating a random hash tail for each class name
- * @property {RegExp} [excludePattern = null] A regular expression for removing characters
+ * @property {RegExp|null} [excludePattern = null] A regular expression for removing characters
  */
 
 /**
- * @param {Options}
+ * @param {Options} - options generation
+ * @returns {Function} generate()
  */
 module.exports = function ({
   prefix = "",
@@ -106,6 +136,9 @@ module.exports = function ({
 
   const tail = [];
 
+  /**
+   * @returns {string} unique class name
+   */
   function generate() {
     const acc = growUp(tail, 0, START_LENGH, AFTER_LENGTH);
     const className = createClassName(acc, afterChar);
