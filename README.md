@@ -57,7 +57,7 @@ const createLocalIdent = require("mini-css-class-name/css-loader");
 ```
 There are two ways to plug it's depending on css-loader version.
 
-**css-loader >= 1.0.0 || >= 2.0.0**
+**css-loader <= 1.x || ~2.x**
 ```js
 module.exports = {
 
