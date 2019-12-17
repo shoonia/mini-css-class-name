@@ -1,11 +1,11 @@
 /**
  * @param {Array} acc - accumulator for string indexes
  * @param {number} index - currnet index
- * @param {number} start - the biggest pasimbe start index
- * @param {number} end - the biggest possible end index
+ * @param {number} start - the biggest possible index for current char
+ * @param {number} end - the biggest possible index for next char
  * @returns {Function|Array} recursive itself or increment value accumulator
  */
-function growUp(acc, index, start, end) {
+function increment(acc, index, start, end) {
   if (acc[index] === undefined) {
     acc.push(0);
     return acc;
@@ -18,11 +18,11 @@ function growUp(acc, index, start, end) {
 
   acc[index] = 0;
 
-  return growUp(acc, ++index, end, end);
+  return increment(acc, ++index, end, end);
 }
 
 /**
- * @param {Array} acc - accumulator for string indexes
+ * @param {Array} acc - accumulator with string indexes
  * @param {string} chars - set of letters
  * @returns {string} class name
  */
@@ -70,7 +70,7 @@ function hasInvalidChars(s) {
 
 /**
  * @param {string} prefix - custom prefix
- * @returns {boolean} has invalid char
+ * @returns {boolean} has invalid first char
  */
 function hasInvalidStartChar(prefix) {
   return /[^a-z_]/i.test(prefix[0]);
@@ -128,26 +128,26 @@ module.exports = function ({
 
   const FIRST_LENGTH = firstChar.length - 1;
   const AFTER_LENGTH = afterChar.length - 1;
-  const START_LENGH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
+  const START_LENGTH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
 
   const getHash = (hash > 0)
     ? createHash.bind(null, hash, afterChar)
     : function () { return ""; };
 
-  const tail = [];
+  const accumulator = [];
 
   /**
    * @returns {string} unique class name
    */
   function generate() {
-    const acc = growUp(tail, 0, START_LENGH, AFTER_LENGTH);
+    const acc = increment(accumulator, 0, START_LENGTH, AFTER_LENGTH);
     const className = createClassName(acc, afterChar);
 
     return prefix + className + suffix + getHash();
   }
 
   generate.reset = function () {
-    tail.length = 0;
+    accumulator.length = 0;
   };
 
   generate.createHash = function (size = hash, chars = afterChar) {
