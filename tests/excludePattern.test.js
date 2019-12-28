@@ -1,13 +1,13 @@
+const { array1e5 } = require("./util");
+
 const miniClassName = require("../index.js");
 
 describe("excludePattern", () => {
-  const array1e5 = Array(1e5).fill(null);
-
   it("should be remove underscore and dash", () => {
     const regex = /[_-]/g;
     const generate = miniClassName({ excludePattern: regex });
 
-    array1e5.forEach(() => {
+    array1e5().forEach(() => {
       const className = generate();
       expect(regex.test(className)).toBeFalsy();
     });
@@ -19,7 +19,7 @@ describe("excludePattern", () => {
     const regex = /[^a-z]/gi;
     const generate = miniClassName({ excludePattern: regex });
 
-    array1e5.forEach(() => {
+    array1e5().forEach(() => {
       const className = generate();
       expect(regex.test(className)).toBeFalsy();
     });
@@ -31,7 +31,7 @@ describe("excludePattern", () => {
     const regex = /d/gi;
     const generate = miniClassName({ excludePattern: regex });
 
-    array1e5.forEach(() => {
+    array1e5().forEach(() => {
       const className = generate();
       expect(regex.test(className)).toBeFalsy();
     });

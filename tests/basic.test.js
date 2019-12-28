@@ -1,16 +1,15 @@
+const { unique, array1e5, LENGTH } = require("./util");
 
 const miniClassName = require("../index.js");
 
 describe("Create className", () => {
-  const array1e5 = Array(1e5).fill(null);
-
   it("should be 100 000 unique className", () => {
     const generate = miniClassName();
-    const classList = array1e5.map(() => generate());
-    const uniqueList = Array.from(new Set(classList));
+    const classList = array1e5().map(() => generate());
+    const uniqueList = unique(classList);
 
     generate.reset();
-    expect(classList.length).toBe(uniqueList.length);
+    expect(uniqueList.length).toBe(LENGTH);
   });
 
   it("should be 100 000 unique className with prefix", () => {
@@ -18,11 +17,11 @@ describe("Create className", () => {
       prefix: "prefix--",
     });
 
-    const classList = array1e5.map(() => generate());
-    const uniqueList = Array.from(new Set(classList));
+    const classList = array1e5().map(() => generate());
+    const uniqueList = unique(classList);
 
     generate.reset();
-    expect(classList.length).toBe(uniqueList.length);
+    expect(uniqueList.length).toBe(LENGTH);
   });
 
   it("should be 100 000 unique className with suffix", () => {
@@ -30,11 +29,11 @@ describe("Create className", () => {
       suffix: "--suffix",
     });
 
-    const classList = array1e5.map(() => generate());
-    const uniqueList = Array.from(new Set(classList));
+    const classList = array1e5().map(() => generate());
+    const uniqueList = unique(classList);
 
     generate.reset();
-    expect(classList.length).toBe(uniqueList.length);
+    expect(uniqueList.length).toBe(LENGTH);
   });
 
   it("should be 100 000 unique className with hash", () => {
@@ -42,11 +41,11 @@ describe("Create className", () => {
       hash: 5,
     });
 
-    const classList = array1e5.map(() => generate());
-    const uniqueList = Array.from(new Set(classList));
+    const classList = array1e5().map(() => generate());
+    const uniqueList = unique(classList);
 
     generate.reset();
-    expect(classList.length).toBe(uniqueList.length);
+    expect(uniqueList.length).toBe(LENGTH);
   });
 
   it("should be 100 000 unique className with all options", () => {
@@ -56,17 +55,17 @@ describe("Create className", () => {
       hash: 5,
     });
 
-    const classList = array1e5.map(() => generate());
-    const uniqueList = Array.from(new Set(classList));
+    const classList = array1e5().map(() => generate());
+    const uniqueList = unique(classList);
 
     generate.reset();
-    expect(classList.length).toBe(uniqueList.length);
+    expect(uniqueList.length).toBe(LENGTH);
   });
 
   it("should be valid first character class name", () => {
     const generate = miniClassName();
 
-    array1e5.forEach(() => {
+    array1e5().forEach(() => {
       const className = generate();
       expect(/[^a-z_]/i.test(className[0])).toBeFalsy();
     });
@@ -77,10 +76,10 @@ describe("Create className", () => {
   it("should be reset", () => {
     const generate = miniClassName();
 
-    const list1 = array1e5.map(() => generate());
+    const list1 = array1e5().map(() => generate());
     generate.reset();
 
-    const list2 = array1e5.map(() => generate());
+    const list2 = array1e5().map(() => generate());
     generate.reset();
 
     expect(list1.join()).toBe(list2.join());
