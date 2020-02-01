@@ -3,7 +3,7 @@
  * @param {number} index - currnet index
  * @param {number} start - the biggest possible index for current char
  * @param {number} end - the biggest possible index for next char
- * @returns {Function|Array} recursive itself or increment value accumulator
+ * @returns {Array} recursive itself or increment value accumulator
  */
 function increment(acc, index, start, end) {
   if (acc[index] === undefined) {
