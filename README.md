@@ -8,9 +8,9 @@ It can be used with [Webpack](#css-modules) and [Gatsby](https://github.com/shoo
 
 ## Install
 ```bash
-npm i mini-css-class-name
+npm i mini-css-class-name --save-dev
 # or
-yarn add mini-css-class-name
+yarn add mini-css-class-name -D
 ```
 
 ## How to use
