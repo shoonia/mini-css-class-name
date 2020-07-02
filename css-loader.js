@@ -1,14 +1,16 @@
 const miniClassName = require("./index.js");
 
 /**
- * @param {import('./index').Options} options - options generation
- * @returns {Function} generate()
+ * @param {miniClassName.Options} options options generation
+ * @returns {function(): string} generate()
  */
 module.exports = function createLocalIdent(options) {
   const generate = miniClassName(options);
+  /**@type {Map<string, string>} */
   const cache = new Map();
 
   return function (context, _, localName) {
+    /**@type {string} */
     const key = context.resourcePath + localName;
 
     if (cache.has(key)) {

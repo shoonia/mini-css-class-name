@@ -5,6 +5,7 @@ tests/
 *.log*
 *.lock
 
+jsconfig.json
 package-lock.json
 .DS_Store
 .eslintrc
