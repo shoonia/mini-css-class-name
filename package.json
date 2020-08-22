@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,10 @@
     "test": "jest tests/**.test.js"
   },
   "devDependencies": {
-    "eslint": "^7.3.1",
-    "eslint-plugin-jsdoc": "^28.6.1",
+    "eslint": "^7.7.0",
+    "eslint-plugin-jsdoc": "^30.2.4",
     "husky": "^4.2.5",
-    "jest": "^26.1.0"
+    "jest": "^26.4.2"
   },
   "husky": {
     "hooks": {

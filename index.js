@@ -5,7 +5,7 @@
  * @param {number} end the biggest possible index for next char
  * @returns {number[]} recursive itself or increment value accumulator
  */
-function increment(acc, index, start, end) {
+const increment = (acc, index, start, end) => {
   if (acc[index] === undefined) {
     acc.push(0);
     return acc;
@@ -19,14 +19,14 @@ function increment(acc, index, start, end) {
   acc[index] = 0;
 
   return increment(acc, ++index, end, end);
-}
+};
 
 /**
  * @param {number[]} acc accumulator with string indexes
  * @param {string} chars set of letters
  * @returns {string} class name
  */
-function createClassName(acc, chars) {
+const createClassName = (acc, chars) => {
   let i = 0;
   let className = "";
 
@@ -35,14 +35,14 @@ function createClassName(acc, chars) {
   }
 
   return className;
-}
+};
 
 /**
  * @param {number} size length of hash
  * @param {string} chars set of letters
  * @returns {string} random string
  */
-function createHash(size, chars) {
+const createHash = (size, chars) => {
   let hash = "";
 
   while (0 < size--) {
@@ -50,38 +50,38 @@ function createHash(size, chars) {
   }
 
   return hash;
-}
+};
 
 /**
  * @param {string} message validation error
  * @returns {TypeError} error
  */
-function error(message) {
+const error = (message) => {
   return new TypeError("mini-css-class-name: " + message);
-}
+};
 
 /**
  * @param {string} s custom prefix or suffix
  * @returns {boolean} has invalid chars
  */
-function hasInvalidChars(s) {
+const hasInvalidChars = (s) => {
   return /[^\w-]/.test(s);
-}
+};
 
 /**
  * @param {string} prefix custom prefix
  * @returns {boolean} has invalid first char
  */
-function hasInvalidStartChar(prefix) {
+const hasInvalidStartChar = (prefix) => {
   return /[^a-z_]/i.test(prefix[0]);
-}
+};
 
 /**
  * @typedef {{
-  prefix?: string;
-  suffix?: string;
-  hash?: number;
-  excludePattern?: RegExp | null;
+ * prefix?: string;
+ * suffix?: string;
+ * hash?: number;
+ * excludePattern?: RegExp | null;
  * }} Options
  */
 
@@ -89,12 +89,12 @@ function hasInvalidStartChar(prefix) {
  * @param {Options} [options] generation
  * @returns {function(): string} generate()
  */
-module.exports = function ({
+module.exports = ({
   prefix = "",
   suffix = "",
   hash = 0,
   excludePattern = null,
-} = {}) {
+} = {}) => {
   if (typeof prefix !== "string") {
     throw error("`prefix` must be a String");
   }
@@ -142,18 +142,18 @@ module.exports = function ({
   /**
    * @returns {string} unique class name
    */
-  function generate() {
+  const generate = () => {
     const acc = increment(accumulator, 0, START_LENGTH, AFTER_LENGTH);
     const className = createClassName(acc, afterChar);
 
     return prefix + className + suffix + getHash();
-  }
+  };
 
-  generate.reset = function () {
+  generate.reset = () => {
     accumulator.length = 0;
   };
 
-  generate.createHash = function (size = hash, chars = afterChar) {
+  generate.createHash = (size = hash, chars = afterChar) => {
     return createHash(size, chars);
   };
 
