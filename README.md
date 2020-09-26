@@ -7,6 +7,7 @@ Minimum size unique CSS class names generator.
 It can be used with [Webpack](#css-modules) and [Gatsby](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme) ecosystems.
 
 ## Install
+
 ```bash
 npm i mini-css-class-name --save-dev
 # or
@@ -14,21 +15,22 @@ yarn add mini-css-class-name -D
 ```
 
 ## How to use
+
 ```js
 const miniClassName = require("mini-css-class-name");
 
 const generate = miniClassName({
   prefix: "x__",
-  suffix: "--",
-  hash: 4,
+  suffix: "--y",
 });
 
-generate(); // x__a--ZwkO
-generate(); // x__b--9dO4
-generate(); // x__c--rRI0
+generate(); // x__a--y
+generate(); // x__b--y
+generate(); // x__c--y
 ```
 
 ## Reset method
+
 ```js
 const miniClassName = require("mini-css-class-name");
 
@@ -44,7 +46,9 @@ generate(); // a
 ```
 
 ## Exclude Pattern
-You can use a regular expression to exclude any characters.
+
+You can use a regular expression to exclude any characters from the template string.
+
 ```js
 // remove underscore and dash
 const generate = miniClassName({ excludePattern: /[_-]/g });
@@ -53,16 +57,21 @@ const generate = miniClassName({ excludePattern: /[_-]/g });
 const generateABC = miniClassName({ excludePattern: /[^a-z]/gi });
 ```
 
+Default template string
+
+```js
+"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-0123456789";
+```
+
 ## CSS Modules
 
-**webpack.config.js**
-```js
-const createLocalIdent = require("mini-css-class-name/css-loader");
-```
-There are two ways to plug it's depending on css-loader version.
+There are two ways to plugin it's depending on css-loader version.
 
 **css-loader <= 1.x || ~2.x**
+
 ```js
+const createLocalIdent = require("mini-css-class-name/css-loader");
+
 module.exports = {
 
   // webpack config ...
@@ -81,8 +90,12 @@ module.exports = {
   },
 };
 ```
+
 **css-loader >= 3.0.0**
+
 ```js
+const createLocalIdent = require("mini-css-class-name/css-loader");
+
 module.exports = {
 
   // webpack config ...
@@ -102,20 +115,23 @@ module.exports = {
   },
 };
 ```
+
 [Documentation about css-modules](https://github.com/webpack-contrib/css-loader#modules)
 
 ## Gatsby
+
 You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2
 
 > [gatsby-plugin-mini-css-class-name](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme)
 
 ## Options
+
 |    Name          |   Type     | Default | Description |
 |:----------------:|:----------:|:-------:|:-----------:|
 | **prefix**       | `{String}` |  `""`   | A custom prefix will be added to each class name
 | **suffix**       | `{String}` |  `""`   | A custom suffix will be added to each class name
-|  **hash**        | `{Number}` |   `0`   | A length of generating a random hash tail for each class name
 |**excludePattern**| `{RegExp}` | `null`  | A regular expression for removing characters
 
 ## License
+
 [MIT](./LICENSE)
