@@ -38,21 +38,6 @@ const createClassName = (acc, chars) => {
 };
 
 /**
- * @param {number} size length of hash
- * @param {string} chars set of letters
- * @returns {string} random string
- */
-const createHash = (size, chars) => {
-  let hash = "";
-
-  while (0 < size--) {
-    hash += chars[(Math.random() * chars.length) | 0];
-  }
-
-  return hash;
-};
-
-/**
  * @param {string} message validation error
  * @returns {TypeError} error
  */
@@ -80,7 +65,6 @@ const hasInvalidStartChar = (prefix) => {
  * @typedef {{
  * prefix?: string;
  * suffix?: string;
- * hash?: number;
  * excludePattern?: RegExp | null;
  * }} Options
  */
@@ -92,7 +76,6 @@ const hasInvalidStartChar = (prefix) => {
 module.exports = ({
   prefix = "",
   suffix = "",
-  hash = 0,
   excludePattern = null,
 } = {}) => {
   if (typeof prefix !== "string") {
@@ -101,10 +84,6 @@ module.exports = ({
 
   if (typeof suffix !== "string") {
     throw error("`suffix` must be a String");
-  }
-
-  if (typeof hash !== "number") {
-    throw error("`hash` must be a Number");
   }
 
   if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
@@ -131,11 +110,6 @@ module.exports = ({
   const AFTER_LENGTH = afterChar.length - 1;
   const START_LENGTH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
 
-  /**@type {() => string} */
-  const getHash = (hash > 0)
-    ? createHash.bind(null, hash, afterChar)
-    : () => "";
-
   /**@type {number[]} */
   const accumulator = [];
 
@@ -146,15 +120,11 @@ module.exports = ({
     const acc = increment(accumulator, 0, START_LENGTH, AFTER_LENGTH);
     const className = createClassName(acc, afterChar);
 
-    return prefix + className + suffix + getHash();
+    return prefix + className + suffix;
   };
 
   generate.reset = () => {
     accumulator.length = 0;
-  };
-
-  generate.createHash = (size = hash, chars = afterChar) => {
-    return createHash(size, chars);
   };
 
   return generate;
