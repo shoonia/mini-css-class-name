@@ -35,11 +35,6 @@ describe("Errors", () => {
     expect(run({ suffix: "--ß" })).toThrowError(msg);
   });
 
-  it("should be invalid hash", () => {
-    const msg = "mini-css-class-name: `hash` must be a Number";
-    expect(run({ hash: null })).toThrowError(msg);
-  });
-
   it("should be invalid excludePattern", () => {
     const msg = "mini-css-class-name: `excludePattern` must be a RegExp";
     expect(run({ excludePattern: "" })).toThrowError(msg);

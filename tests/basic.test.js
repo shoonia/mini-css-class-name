@@ -36,23 +36,10 @@ describe("Create className", () => {
     expect(uniqueList.length).toBe(LENGTH);
   });
 
-  it("should be 100 000 unique className with hash", () => {
-    const generate = miniClassName({
-      hash: 5,
-    });
-
-    const classList = array1e5().map(() => generate());
-    const uniqueList = unique(classList);
-
-    generate.reset();
-    expect(uniqueList.length).toBe(LENGTH);
-  });
-
-  it("should be 100 000 unique className with all options", () => {
+  it("should be 100 000 unique className with suffix and prefix", () => {
     const generate = miniClassName({
       prefix: "prefix--",
       suffix: "--suffix",
-      hash: 5,
     });
 
     const classList = array1e5().map(() => generate());
