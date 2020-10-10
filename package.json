@@ -4,7 +4,7 @@
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js css-loader.js tests/**.js",
+    "lint": "eslint index.js css-loader/**.js tests/**.js",
     "test": "jest tests/**.test.js"
   },
   "devDependencies": {

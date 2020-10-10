@@ -1,4 +1,4 @@
-const miniClassName = require("./index.js");
+const miniClassName = require("../index.js");
 
 /**
  * @param {miniClassName.Options} options options generation
