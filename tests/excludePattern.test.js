@@ -1,9 +1,9 @@
-const { array1e5 } = require("./util");
+const { array1e5 } = require('./util');
 
-const miniClassName = require("../index.js");
+const miniClassName = require('../index.js');
 
-describe("excludePattern", () => {
-  it("should be keep only alphabet characters", () => {
+describe('excludePattern', () => {
+  it('should be keep only alphabet characters', () => {
     const regex = /[^a-z]/gi;
     const generate = miniClassName({ excludePattern: regex });
 

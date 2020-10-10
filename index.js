@@ -28,7 +28,7 @@ const increment = (acc, index, start, end) => {
  */
 const createClassName = (acc, chars) => {
   let i = 0;
-  let className = "";
+  let className = '';
 
   while (i < acc.length) {
     className += chars[acc[i++]];
@@ -42,7 +42,7 @@ const createClassName = (acc, chars) => {
  * @returns {TypeError} error
  */
 const error = (message) => {
-  return new TypeError("mini-css-class-name: " + message);
+  return new TypeError('mini-css-class-name: ' + message);
 };
 
 /**
@@ -74,36 +74,36 @@ const hasInvalidStartChar = (prefix) => {
  * @returns {function(): string} generate()
  */
 module.exports = ({
-  prefix = "",
-  suffix = "",
+  prefix = '',
+  suffix = '',
   excludePattern = null,
 } = {}) => {
-  if (typeof prefix !== "string") {
-    throw error("`prefix` must be a String");
+  if (typeof prefix !== 'string') {
+    throw error('`prefix` must be a String');
   }
 
-  if (typeof suffix !== "string") {
-    throw error("`suffix` must be a String");
+  if (typeof suffix !== 'string') {
+    throw error('`suffix` must be a String');
   }
 
   if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
-    throw error("`excludePattern` must be a RegExp");
+    throw error('`excludePattern` must be a RegExp');
   }
 
   if (hasInvalidChars(prefix) || hasInvalidChars(suffix)) {
-    throw error("`prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);");
+    throw error('`prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);');
   }
 
   if (hasInvalidStartChar(prefix)) {
-    throw error("`prefix` cannot start with a digit or hyphens");
+    throw error('`prefix` cannot start with a digit or hyphens');
   }
 
-  let firstChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
-  let afterChar = firstChar + "-0123456789";
+  let firstChar = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_';
+  let afterChar = firstChar + '-0123456789';
 
   if (excludePattern !== null) {
-    firstChar = firstChar.replace(excludePattern, "");
-    afterChar = afterChar.replace(excludePattern, "");
+    firstChar = firstChar.replace(excludePattern, '');
+    afterChar = afterChar.replace(excludePattern, '');
   }
 
   const FIRST_LENGTH = firstChar.length - 1;

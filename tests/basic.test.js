@@ -1,9 +1,9 @@
-const { unique, array1e5, LENGTH } = require("./util");
+const { unique, array1e5, LENGTH } = require('./util');
 
-const miniClassName = require("../index.js");
+const miniClassName = require('../index.js');
 
-describe("Create className", () => {
-  it("should be 100 000 unique className", () => {
+describe('Create className', () => {
+  it('should be 100 000 unique className', () => {
     const generate = miniClassName();
     const classList = array1e5().map(() => generate());
     const uniqueList = unique(classList);
@@ -12,9 +12,9 @@ describe("Create className", () => {
     expect(uniqueList.length).toBe(LENGTH);
   });
 
-  it("should be 100 000 unique className with prefix", () => {
+  it('should be 100 000 unique className with prefix', () => {
     const generate = miniClassName({
-      prefix: "prefix--",
+      prefix: 'prefix--',
     });
 
     const classList = array1e5().map(() => generate());
@@ -24,9 +24,9 @@ describe("Create className", () => {
     expect(uniqueList.length).toBe(LENGTH);
   });
 
-  it("should be 100 000 unique className with suffix", () => {
+  it('should be 100 000 unique className with suffix', () => {
     const generate = miniClassName({
-      suffix: "--suffix",
+      suffix: '--suffix',
     });
 
     const classList = array1e5().map(() => generate());
@@ -36,10 +36,10 @@ describe("Create className", () => {
     expect(uniqueList.length).toBe(LENGTH);
   });
 
-  it("should be 100 000 unique className with suffix and prefix", () => {
+  it('should be 100 000 unique className with suffix and prefix', () => {
     const generate = miniClassName({
-      prefix: "prefix--",
-      suffix: "--suffix",
+      prefix: 'prefix--',
+      suffix: '--suffix',
     });
 
     const classList = array1e5().map(() => generate());
@@ -49,7 +49,7 @@ describe("Create className", () => {
     expect(uniqueList.length).toBe(LENGTH);
   });
 
-  it("should be valid first character class name", () => {
+  it('should be valid first character class name', () => {
     const generate = miniClassName();
 
     array1e5().forEach(() => {
@@ -60,7 +60,7 @@ describe("Create className", () => {
     generate.reset();
   });
 
-  it("should be reset", () => {
+  it('should be reset', () => {
     const generate = miniClassName();
 
     const list1 = array1e5().map(() => generate());

@@ -3,7 +3,7 @@ const array1e5 = Array(LENGTH).fill(null);
 
 const mockCSSLoader = (getLocalIdent) => {
   const mockContext = {
-    resourcePath: "/app/doc/test.css"
+    resourcePath: '/app/doc/test.css'
   };
 
   return (localName) => {
