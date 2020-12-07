@@ -1,7 +1,7 @@
 const miniClassName = require('../index.js');
 
 /**
- * @param {miniClassName.Options} options options generation
+ * @param {miniClassName.Options} [options] options generation
  * @returns {function(): string} generate()
  */
 module.exports = (options) => {
