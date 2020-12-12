@@ -54,7 +54,7 @@ describe('Create className', () => {
 
     array1e5().forEach(() => {
       const className = generate();
-      expect(/[^a-z_]/i.test(className[0])).toBeFalsy();
+      expect(/[^a-z_]/i.test(className[0])).toBe(false);
     });
 
     generate.reset();

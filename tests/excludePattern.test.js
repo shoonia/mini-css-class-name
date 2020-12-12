@@ -9,7 +9,7 @@ describe('excludePattern', () => {
 
     array1e5().forEach(() => {
       const className = generate();
-      expect(regex.test(className)).toBeFalsy();
+      expect(regex.test(className)).toBe(false);
     });
 
     generate.reset();
