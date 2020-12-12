@@ -6,7 +6,7 @@
  * @returns {number[]} recursive itself or increment value accumulator
  */
 const increment = (acc, index, start, end) => {
-  if (acc[index] === undefined) {
+  if (acc.length === index) {
     acc.push(0);
     return acc;
   }
