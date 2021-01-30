@@ -1,4 +1,4 @@
-const LENGTH = 100000;
+const LENGTH = 200000;
 const array1e5 = Array(LENGTH).fill(null);
 
 const mockCSSLoader = (getLocalIdent) => {

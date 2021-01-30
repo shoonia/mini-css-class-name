@@ -1,6 +1,6 @@
 const { array1e5 } = require('./util');
 
-const miniClassName = require('../index.js');
+const miniClassName = require('..');
 
 describe('excludePattern', () => {
   it('should be keep only alphabet characters', () => {

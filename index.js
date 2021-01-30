@@ -3,7 +3,7 @@
  * @param {number} index currnet index
  * @param {number} start the biggest possible index for current char
  * @param {number} end the biggest possible index for next char
- * @returns {number[]} recursive itself or increment value accumulator
+ * @returns {number[]} accumulator
  */
 const increment = (acc, index, start, end) => {
   if (acc.length === index) {
@@ -41,25 +41,19 @@ const createClassName = (acc, chars) => {
  * @param {string} message validation error
  * @returns {TypeError} error
  */
-const error = (message) => {
-  return new TypeError('mini-css-class-name: ' + message);
-};
+const ex = (message) => new TypeError(`mini-css-class-name: ${message}`);
 
 /**
- * @param {string} s custom prefix or suffix
+ * @param {string} string custom prefix or suffix
  * @returns {boolean} has invalid chars
  */
-const hasInvalidChars = (s) => {
-  return /[^\w-]/.test(s);
-};
+const hasInvalidChars = (string) => /[^\w-]/.test(string);
 
 /**
- * @param {string} prefix custom prefix
+ * @param {string} char custom prefix
  * @returns {boolean} has invalid first char
  */
-const hasInvalidStartChar = (prefix) => {
-  return /[^a-z_]/i.test(prefix[0]);
-};
+const hasInvalidStartChar = (char) => /[^a-z_]/i.test(char);
 
 /**
  * @typedef {{
@@ -71,7 +65,7 @@ const hasInvalidStartChar = (prefix) => {
 
 /**
  * @param {Options} [options] generation
- * @returns {function(): string} generate()
+ * @returns {function(): string} Generate
  */
 module.exports = ({
   prefix = '',
@@ -79,27 +73,27 @@ module.exports = ({
   excludePattern = null,
 } = {}) => {
   if (typeof prefix !== 'string') {
-    throw error('`prefix` must be a String');
+    throw ex('`prefix` must be a String');
   }
 
   if (typeof suffix !== 'string') {
-    throw error('`suffix` must be a String');
+    throw ex('`suffix` must be a String');
   }
 
   if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
-    throw error('`excludePattern` must be a RegExp');
+    throw ex('`excludePattern` must be a RegExp');
   }
 
   if (hasInvalidChars(prefix) || hasInvalidChars(suffix)) {
-    throw error('`prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);');
+    throw ex('`prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_)');
   }
 
-  if (hasInvalidStartChar(prefix)) {
-    throw error('`prefix` cannot start with a digit or hyphens');
+  if (hasInvalidStartChar(prefix[0])) {
+    throw ex('`prefix` cannot start with a digit or hyphens');
   }
 
   let firstChar = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_';
-  let afterChar = firstChar + '-0123456789';
+  let afterChar =  `${firstChar}-0123456789`;
 
   if (excludePattern !== null) {
     firstChar = firstChar.replace(excludePattern, '');
@@ -110,10 +104,12 @@ module.exports = ({
   const AFTER_LENGTH = afterChar.length - 1;
   const START_LENGTH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
 
-  /**@type {number[]} */
+  /** @type {number[]} */
   const accumulator = [];
 
   /**
+   * Generate
+   *
    * @returns {string} unique class name
    */
   const generate = () => {
@@ -123,6 +119,7 @@ module.exports = ({
     return prefix + className + suffix;
   };
 
+  /** @memberof Generate */
   generate.reset = () => {
     accumulator.length = 0;
   };

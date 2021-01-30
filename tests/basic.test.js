@@ -1,6 +1,6 @@
 const { unique, array1e5, LENGTH } = require('./util');
 
-const miniClassName = require('../index.js');
+const miniClassName = require('..');
 
 describe('Create className', () => {
   it('should be 100 000 unique className', () => {
@@ -9,7 +9,8 @@ describe('Create className', () => {
     const uniqueList = unique(classList);
 
     generate.reset();
-    expect(uniqueList.length).toBe(LENGTH);
+
+    expect(uniqueList).toHaveLength(LENGTH);
   });
 
   it('should be 100 000 unique className with prefix', () => {
@@ -21,7 +22,8 @@ describe('Create className', () => {
     const uniqueList = unique(classList);
 
     generate.reset();
-    expect(uniqueList.length).toBe(LENGTH);
+
+    expect(uniqueList).toHaveLength(LENGTH);
   });
 
   it('should be 100 000 unique className with suffix', () => {
@@ -33,7 +35,8 @@ describe('Create className', () => {
     const uniqueList = unique(classList);
 
     generate.reset();
-    expect(uniqueList.length).toBe(LENGTH);
+
+    expect(uniqueList).toHaveLength(LENGTH);
   });
 
   it('should be 100 000 unique className with suffix and prefix', () => {
@@ -46,7 +49,8 @@ describe('Create className', () => {
     const uniqueList = unique(classList);
 
     generate.reset();
-    expect(uniqueList.length).toBe(LENGTH);
+
+    expect(uniqueList).toHaveLength(LENGTH);
   });
 
   it('should be valid first character class name', () => {
@@ -60,15 +64,17 @@ describe('Create className', () => {
     generate.reset();
   });
 
-  it('should be reset', () => {
+  it('should reset', () => {
     const generate = miniClassName();
 
     const list1 = array1e5().map(() => generate());
+
     generate.reset();
 
     const list2 = array1e5().map(() => generate());
+
     generate.reset();
 
-    expect(list1.join()).toBe(list2.join());
+    expect(list1).toEqual(list2);
   });
 });

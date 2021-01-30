@@ -1,4 +1,10 @@
-const miniClassName = require('../index.js');
+const miniClassName = require('..');
+
+const msgPrefixString = 'mini-css-class-name: `prefix` must be a String';
+const msgSuffixString = 'mini-css-class-name: `suffix` must be a String';
+const msgPrefixStart = 'mini-css-class-name: `prefix` cannot start with a digit or hyphens';
+const msgPefSufContain = 'mini-css-class-name: `prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_)';
+const msgRegExp = 'mini-css-class-name: `excludePattern` must be a RegExp';
 
 describe('Errors', () => {
   const run = (ops) => () => miniClassName(ops);
@@ -8,47 +14,43 @@ describe('Errors', () => {
   });
 
   it('should be invalid `prefix`', () => {
-    const msg = 'mini-css-class-name: `prefix` must be a String';
-    expect(run({ prefix: null })).toThrowError(msg);
-    expect(run({ prefix: 6 })).toThrowError(msg);
+    expect(run({ prefix: null })).toThrowError(msgPrefixString);
+    expect(run({ prefix: 6 })).toThrowError(msgPrefixString);
+    expect(run({ prefix: /x/ })).toThrowError(msgPrefixString);
   });
 
   it('should be invalid `prefix` char', () => {
-    const msg = 'mini-css-class-name: `prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);';
-    expect(run({ prefix: 'x--ß--' })).toThrowError(msg);
+    expect(run({ prefix: 'x--ß--' })).toThrowError(msgPefSufContain);
   });
 
   it('should be invalid first `prefix` char', () => {
-    const msg = 'mini-css-class-name: `prefix` cannot start with a digit or hyphens';
-    expect(run({ prefix: '5' })).toThrowError(msg);
-    expect(run({ prefix: '-' })).toThrowError(msg);
+    expect(run({ prefix: '5' })).toThrowError(msgPrefixStart);
+    expect(run({ prefix: '-' })).toThrowError(msgPrefixStart);
   });
 
   it('should be invalid suffix', () => {
-    const msg = 'mini-css-class-name: `suffix` must be a String';
-    expect(run({ suffix: null })).toThrowError(msg);
-    expect(run({ suffix: 0 })).toThrowError(msg);
+    expect(run({ suffix: null })).toThrowError(msgSuffixString);
+    expect(run({ suffix: 0 })).toThrowError(msgSuffixString);
+    expect(run({ suffix: /y/ })).toThrowError(msgSuffixString);
   });
 
   it('should be invalid `suffix` char', () => {
-    const msg = 'mini-css-class-name: `prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_);';
-    expect(run({ suffix: '--ß' })).toThrowError(msg);
+    expect(run({ suffix: '--ß' })).toThrowError(msgPefSufContain);
   });
 
   it('should be invalid excludePattern', () => {
-    const msg = 'mini-css-class-name: `excludePattern` must be a RegExp';
-    expect(run({ excludePattern: '' })).toThrowError(msg);
-    expect(run({ excludePattern: 1 })).toThrowError(msg);
+    expect(run({ excludePattern: '' })).toThrowError(msgRegExp);
+    expect(run({ excludePattern: 1 })).toThrowError(msgRegExp);
   });
 
   // NO ERROR
 
-  it('shouldn\'t be error, excludePattern is null', () => {
+  it('should not be error, excludePattern is null', () => {
     const cb = miniClassName({ excludePattern: null });
     expect(typeof cb).toBe('function');
   });
 
-  it('shouldn\'t be error, excludePattern is RegExp', () => {
+  it('should not be error, excludePattern is RegExp', () => {
     const cb = miniClassName({ excludePattern: /regex/ });
     expect(typeof cb).toBe('function');
   });
