@@ -1,8 +1,8 @@
 /**
  * @param {number[]} acc accumulator for string indexes
  * @param {number} index currnet index
- * @param {number} start the biggest possible index for current char
- * @param {number} end the biggest possible index for next char
+ * @param {number} start the max possible index for current char
+ * @param {number} end the max possible index for next char
  * @returns {number[]} accumulator
  */
 const increment = (acc, index, start, end) => {
@@ -22,9 +22,9 @@ const increment = (acc, index, start, end) => {
 };
 
 /**
- * @param {number[]} acc accumulator with string indexes
+ * @param {number[]} acc accumulator with indexes
  * @param {string} chars set of letters
- * @returns {string} class name
+ * @returns {string} new class name
  */
 const createClassName = (acc, chars) => {
   let i = 0;

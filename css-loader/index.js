@@ -1,16 +1,16 @@
 const miniClassName = require('../index.js');
 
 /**
- * @param {miniClassName.Options} [options] options generation
+ * @param {miniClassName.Options} [options] options
  * @returns {function(): string} Generate
  */
 module.exports = (options) => {
-  const generate = miniClassName(options);
-  /**@type {Map<string, string>} */
+  /** @type {Map<string, string>} */
   const cache = new Map();
+  const generate = miniClassName(options);
 
   return (context, _, localName) => {
-    /**@type {string} */
+    /** @type {string} */
     const key = context.resourcePath + localName;
 
     if (cache.has(key)) {
