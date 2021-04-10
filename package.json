@@ -8,15 +8,13 @@
     "test": "jest tests/**.test.js"
   },
   "devDependencies": {
-    "eslint": "^7.19.0",
-    "eslint-plugin-jsdoc": "^31.5.0",
-    "husky": "^4.3.8",
-    "jest": "^26.6.3"
+    "eslint": "^7.24.0",
+    "eslint-plugin-jsdoc": "^32.3.0",
+    "jest": "^26.6.3",
+    "simple-git-hooks": "^2.3.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm test"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "npm run lint && npm test"
   },
   "repository": {
     "type": "git",

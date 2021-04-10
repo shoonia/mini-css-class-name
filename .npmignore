@@ -11,3 +11,4 @@ package-lock.json
 .eslintrc
 .gitignore
 .npmrc
+.nvmrc
