@@ -119,7 +119,28 @@ module.exports = ({
     return prefix + className + suffix;
   };
 
-  /** @memberof Generate */
+  /**
+   * @memberof Generate
+   * @returns {number[]} accumulator
+   */
+  generate.getAccumulator = () => [...accumulator];
+
+  /**
+   * @memberof Generate
+   * @param {number[]} acc accumulator
+   * @returns {number[]} accumulator
+   */
+  generate.setAccumulator = (acc) => {
+    accumulator.length = 0;
+    accumulator.push(...acc);
+
+    return acc;
+  };
+
+  /**
+   * @memberof Generate
+   * @returns {void}
+   */
   generate.reset = () => {
     accumulator.length = 0;
   };
