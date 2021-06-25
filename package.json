@@ -8,9 +8,9 @@
     "test": "jest tests/**.test.js"
   },
   "devDependencies": {
-    "eslint": "^7.27.0",
-    "eslint-plugin-jsdoc": "^35.0.0",
-    "jest": "^27.0.2",
+    "eslint": "^7.29.0",
+    "eslint-plugin-jsdoc": "^35.4.0",
+    "jest": "^27.0.5",
     "simple-git-hooks": "^2.4.1"
   },
   "simple-git-hooks": {
