@@ -3,6 +3,14 @@ const { unique, array1e5, LENGTH } = require('./util');
 const miniClassName = require('..');
 
 describe('Create className', () => {
+  it('should be alphabet a queue', () => {
+    const generate = miniClassName();
+
+    expect(generate()).toBe('a');
+    expect(generate()).toBe('b');
+    expect(generate()).toBe('c');
+  });
+
   it('should be 100 000 unique className', () => {
     const generate = miniClassName();
     const classList = array1e5().map(() => generate());

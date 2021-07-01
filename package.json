@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,11 @@
     "test": "jest tests/**.test.js"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "eslint": "^7.29.0",
-    "eslint-plugin-jsdoc": "^35.4.0",
-    "jest": "^27.0.5",
-    "simple-git-hooks": "^2.4.1"
+    "eslint-plugin-jsdoc": "^35.4.1",
+    "jest": "^27.0.6",
+    "simple-git-hooks": "^2.5.1"
   },
   "simple-git-hooks": {
     "pre-commit": "npm run lint && npm test"

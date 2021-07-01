@@ -12,7 +12,7 @@ const increment = (acc, index, start, end) => {
   }
 
   if (acc[index] < start) {
-    acc[index]++;
+    ++acc[index];
     return acc;
   }
 
