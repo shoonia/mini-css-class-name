@@ -17,11 +17,11 @@ yarn add mini-css-class-name -D
 ## How to use
 
 ```js
-const miniClassName = require("mini-css-class-name");
+const miniClassName = require('mini-css-class-name');
 
 const generate = miniClassName({
-  prefix: "x__",
-  suffix: "--y",
+  prefix: 'x__',
+  suffix: '--y',
 });
 
 generate(); // x__a--y
@@ -32,7 +32,7 @@ generate(); // x__c--y
 ## Reset method
 
 ```js
-const miniClassName = require("mini-css-class-name");
+const miniClassName = require('mini-css-class-name');
 
 const generate = miniClassName();
 
@@ -60,7 +60,7 @@ const generateABC = miniClassName({ excludePattern: /[^a-z]/gi });
 Default template string
 
 ```js
-"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-0123456789";
+'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-0123456789';
 ```
 
 ## CSS Modules
@@ -70,7 +70,9 @@ There are two ways to plugin it's depending on css-loader version.
 **css-loader <= 1.x || ~2.x**
 
 ```js
-const createLocalIdent = require("mini-css-class-name/css-loader");
+const createLocalIdent = require('mini-css-class-name/css-loader');
+
+const localIndent = createLocalIdent(/* options */);
 
 module.exports = {
 
@@ -80,10 +82,10 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
           modules: true,
-          getLocalIdent: createLocalIdent(/* options */),
+          getLocalIdent: localIndent,
         },
       },
     ],
@@ -94,7 +96,9 @@ module.exports = {
 **css-loader >= 3.0.0**
 
 ```js
-const createLocalIdent = require("mini-css-class-name/css-loader");
+const createLocalIdent = require('mini-css-class-name/css-loader');
+
+const localIndent = createLocalIdent(/* options */);
 
 module.exports = {
 
@@ -104,10 +108,10 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
           modules: {
-            getLocalIdent: createLocalIdent(/* options */),
+            getLocalIdent: localIndent,
           },
         },
       },
@@ -128,8 +132,8 @@ You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpa
 
 |    Name          |   Type     | Default | Description |
 |:----------------:|:----------:|:-------:|:-----------:|
-| **prefix**       | `{String}` |  `""`   | A custom prefix will be added to each class name
-| **suffix**       | `{String}` |  `""`   | A custom suffix will be added to each class name
+| **prefix**       | `{String}` |  `''`   | A custom prefix will be added to each class name
+| **suffix**       | `{String}` |  `''`   | A custom suffix will be added to each class name
 |**excludePattern**| `{RegExp}` | `null`  | A regular expression for removing characters
 
 ## License
