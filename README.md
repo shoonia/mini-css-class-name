@@ -124,7 +124,7 @@ module.exports = {
 
 ## Gatsby
 
-You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2
+You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2 or v3
 
 > [gatsby-plugin-mini-css-class-name](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme)
 
