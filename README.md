@@ -126,8 +126,6 @@ module.exports = {
 };
 ```
 
-[Documentation about css-modules](https://github.com/webpack-contrib/css-loader#modules)
-
 ### postcss-modules
 
 ```js
@@ -162,7 +160,7 @@ const getStyles = async () => {
 
 ## Gatsby
 
-You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2 or v3
+You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2, v3 or v4
 
 > [gatsby-plugin-mini-css-class-name](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme)
 
