@@ -17,9 +17,9 @@ yarn add mini-css-class-name -D
 ## How to use
 
 ```js
-const miniClassName = require('mini-css-class-name');
+const miniCssClassName = require('mini-css-class-name');
 
-const generate = miniClassName({
+const generate = miniCssClassName({
   prefix: 'x__',
   suffix: '--y',
 });
@@ -32,9 +32,9 @@ generate(); // x__c--y
 ## Reset method
 
 ```js
-const miniClassName = require('mini-css-class-name');
+const miniCssClassName = require('mini-css-class-name');
 
-const generate = miniClassName();
+const generate = miniCssClassName();
 
 generate(); // a
 generate(); // b
@@ -51,10 +51,10 @@ You can use a regular expression to exclude any characters from the template str
 
 ```js
 // remove underscore and dash
-const generate = miniClassName({ excludePattern: /[_-]/g });
+const generate = miniCssClassName({ excludePattern: /[_-]/g });
 
 // keep only alphabet characters
-const generateABC = miniClassName({ excludePattern: /[^a-z]/gi });
+const generateABC = miniCssClassName({ excludePattern: /[^a-z]/gi });
 ```
 
 Default template string

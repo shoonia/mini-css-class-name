@@ -1,13 +1,13 @@
-const miniClassName = require('../index.js');
+const miniCssClassName = require('../index.js');
 
 /**
- * @param {miniClassName.Options} [options] options
+ * @param {miniCssClassName.Options} [options] options
  * @returns {function(): string} Generate
  */
 module.exports = (options) => {
   /** @type {Map<string, string>} */
   const cache = new Map();
-  const generate = miniClassName(options);
+  const generate = miniCssClassName(options);
 
   return (context, _, localName) => {
     /** @type {string} */
