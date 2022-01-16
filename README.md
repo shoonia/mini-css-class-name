@@ -65,6 +65,12 @@ Default template string
 
 ## CSS Modules
 
+### css-loader
+
+```js
+const createLocalIdent = require('mini-css-class-name/css-loader');
+```
+
 There are two ways to plugin it's depending on css-loader version.
 
 **css-loader <= 1.x || ~2.x**
@@ -121,6 +127,38 @@ module.exports = {
 ```
 
 [Documentation about css-modules](https://github.com/webpack-contrib/css-loader#modules)
+
+### postcss-modules
+
+```js
+const generateScopedName = require('mini-css-class-name/postcss-modules');
+```
+
+**Example**
+
+```js
+const { readFile } = require('fs/promises');
+const postcss = require('postcss');
+const postcssModules = require('postcss-modules');
+const generateScopedName = require('mini-css-class-name/postcss-modules');
+
+const getStyles = async () => {
+  let json;
+
+  const source = await readFile('./styles.css', 'utf8');
+
+  const { css } = await postcss([
+    postcssModules({
+      generateScopedName: generateScopedName(/* options */),
+      getJSON(_, jsonData) {
+        json = jsonData;
+      },
+    }),
+  ]).process(source);
+
+  return { json, css };
+};
+```
 
 ## Gatsby
 
