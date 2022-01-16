@@ -23,8 +23,9 @@
     "url": "https://github.com/shoonia/mini-css-class-name/issues"
   },
   "files": [
-    "index.js",
-    "css-loader"
+    "css-loader",
+    "postcss-modules",
+    "index.js"
   ],
   "keywords": [
     "css",
