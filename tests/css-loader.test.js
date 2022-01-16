@@ -1,25 +1,28 @@
+const { test } = require('uvu');
+const { is } = require('uvu/assert');
+
 const createLocalIdent = require('../css-loader');
 const { mockCSSLoader } = require('./util');
 
-describe('css-loader', () => {
-  it('should be alphabet a queue', () => {
-    const run = mockCSSLoader(createLocalIdent());
+test('should be alphabet a queue', () => {
+  const run = mockCSSLoader(createLocalIdent());
 
-    expect(run('one')).toBe('a');
-    expect(run('two')).toBe('b');
-    expect(run('three')).toBe('c');
-  });
-
-  it('should return equal class names', () => {
-    const run = mockCSSLoader(createLocalIdent());
-    const localName = 'test';
-
-    expect(run(localName)).toBe(run(localName));
-  });
-
-  it('should return NOT equal class names', () => {
-    const run = mockCSSLoader(createLocalIdent());
-
-    expect(run('x')).not.toBe(run('y'));
-  });
+  is(run('one'), 'a');
+  is(run('two'), 'b');
+  is(run('three'), 'c');
 });
+
+test('should return equal class names', () => {
+  const run = mockCSSLoader(createLocalIdent());
+  const localName = 'test';
+
+  is(run(localName), run(localName));
+});
+
+test('should return NOT equal class names', () => {
+  const run = mockCSSLoader(createLocalIdent());
+
+  is.not(run('x'), run('y'));
+});
+
+test.run();

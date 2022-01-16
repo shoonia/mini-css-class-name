@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js css-loader/**.js tests/**.js",
-    "test": "jest tests/**.test.js"
+    "test": "uvu tests"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
-    "eslint": "^7.32.0",
-    "jest": "^27.2.2",
-    "simple-git-hooks": "^2.6.1"
+    "eslint": "^8.7.0",
+    "simple-git-hooks": "^2.7.0",
+    "uvu": "^0.5.3"
   },
   "simple-git-hooks": {
     "pre-commit": "npm run lint && npm test"
@@ -25,9 +24,7 @@
   },
   "files": [
     "index.js",
-    "css-loader",
-    "LICENSE",
-    "README.md"
+    "css-loader"
   ],
   "keywords": [
     "css",

@@ -1,17 +1,19 @@
+const { test } = require('uvu');
+const { is } = require('uvu/assert');
+
 const { array1e5 } = require('./util');
+const miniCssClassName = require('..');
 
-const miniClassName = require('..');
+test('should be keep only alphabet characters', () => {
+  const regex = /[^a-z]/gi;
+  const generate = miniCssClassName({ excludePattern: regex });
 
-describe('excludePattern', () => {
-  it('should be keep only alphabet characters', () => {
-    const regex = /[^a-z]/gi;
-    const generate = miniClassName({ excludePattern: regex });
-
-    array1e5().forEach(() => {
-      const className = generate();
-      expect(regex.test(className)).toBe(false);
-    });
-
-    generate.reset();
+  array1e5().forEach(() => {
+    const className = generate();
+    is(regex.test(className), false);
   });
+
+  generate.reset();
 });
+
+test.run();
