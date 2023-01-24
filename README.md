@@ -1,6 +1,6 @@
 # mini-css-class-name
 
-[![test status](https://github.com/shoonia/mini-css-class-name/workflows/test/badge.svg)](https://github.com/shoonia/mini-css-class-name/actions)
+[![CI](https://github.com/shoonia/mini-css-class-name/actions/workflows/ci.yml/badge.svg)](https://github.com/shoonia/mini-css-class-name/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/mini-css-class-name.svg)](https://www.npmjs.com/package/mini-css-class-name)
 
 Minimum size unique CSS class names generator.
