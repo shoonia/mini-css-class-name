@@ -64,7 +64,7 @@ const hasInvalidStartChar = (char) => /[^a-z_]/i.test(char);
  */
 
 /**
- * @param {Options} [options] generation
+ * @param {Options} options generation
  * @returns {function(): string} Generate
  */
 module.exports = ({
