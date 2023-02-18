@@ -1,19 +1,27 @@
 /**
+ * @typedef {{
+* prefix?: string;
+* suffix?: string;
+* excludePattern?: RegExp | null;
+* }} Options
+*/
+
+/**
  * @param {number[]} acc accumulator for string indexes
  * @param {number} index currnet index
  * @param {number} start the max possible index for current char
  * @param {number} end the max possible index for next char
- * @returns {number[]} accumulator
+ * @returns {void}
  */
 const increment = (acc, index, start, end) => {
   if (acc.length === index) {
     acc.push(0);
-    return acc;
+    return;
   }
 
   if (acc[index] < start) {
     ++acc[index];
-    return acc;
+    return;
   }
 
   acc[index] = 0;
@@ -54,14 +62,6 @@ const hasInvalidChars = (string) => /[^\w-]/.test(string);
  * @returns {boolean} has invalid first char
  */
 const hasInvalidStartChar = (char) => /[^a-z_]/i.test(char);
-
-/**
- * @typedef {{
- * prefix?: string;
- * suffix?: string;
- * excludePattern?: RegExp | null;
- * }} Options
- */
 
 /**
  * @param {Options} options generation
@@ -113,10 +113,9 @@ module.exports = ({
    * @returns {string} unique class name
    */
   const generate = () => {
-    const acc = increment(accumulator, 0, START_LENGTH, AFTER_LENGTH);
-    const className = createClassName(acc, afterChar);
+    increment(accumulator, 0, START_LENGTH, AFTER_LENGTH);
 
-    return prefix + className + suffix;
+    return prefix + createClassName(accumulator, afterChar) + suffix;
   };
 
   /**

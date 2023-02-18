@@ -13,6 +13,7 @@
   },
   "include": [
     "index.js",
-    "css-loader"
+    "css-loader",
+    "postcss-modules"
   ]
 }

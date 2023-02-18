@@ -8,8 +8,8 @@
     "test": "uvu tests"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.8",
-    "eslint": "^8.32.0",
+    "@evilmartians/lefthook": "^1.2.9",
+    "eslint": "^8.34.0",
     "uvu": "^0.5.6"
   },
   "repository": {
