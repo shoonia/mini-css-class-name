@@ -1,10 +1,10 @@
 /**
  * @typedef {{
-* prefix?: string;
-* suffix?: string;
-* excludePattern?: RegExp | null;
-* }} Options
-*/
+ * prefix?: string;
+ * suffix?: string;
+ * excludePattern?: RegExp | null;
+ * }} Options
+ */
 
 /**
  * @param {number[]} acc accumulator for string indexes
@@ -100,16 +100,14 @@ module.exports = ({
     afterChar = afterChar.replace(excludePattern, '');
   }
 
-  const FIRST_LENGTH = firstChar.length - 1;
   const AFTER_LENGTH = afterChar.length - 1;
-  const START_LENGTH = (prefix.length < 1) ? FIRST_LENGTH : AFTER_LENGTH;
+  const START_LENGTH = prefix.length < 1 ? firstChar.length - 1 : AFTER_LENGTH;
 
   /** @type {number[]} */
   const accumulator = [];
 
   /**
    * Generate
-   *
    * @returns {string} unique class name
    */
   const generate = () => {
