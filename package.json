@@ -3,6 +3,12 @@
   "version": "0.13.2",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./css-loader": "./css-loader/index.js",
+    "./postcss-loader": "./postcss-loader/index.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "lint": "eslint '**/*.js'",
     "test": "uvu tests"
@@ -38,7 +44,7 @@
   "author": {
     "name": "Alexander Zaytsev",
     "email": "zaytsev126@gmail.com",
-    "url": "https://twitter.com/_shoonia"
+    "url": "https://x.com/_shoonia"
   },
   "license": "MIT"
 }
