@@ -75,7 +75,7 @@ const createLocalIdent = require('mini-css-class-name/css-loader');
 
 There are two ways to plugin it's depending on `css-loader` version.
 
-**css-loader <= 1.x || ~2.x**
+#### css-loader <= 1.x || ~2.x
 
 ```js
 const createLocalIdent = require('mini-css-class-name/css-loader');
@@ -101,7 +101,7 @@ module.exports = {
 };
 ```
 
-**css-loader >= 3.0.0**
+#### css-loader >= 3.0.0
 
 ```js
 const createLocalIdent = require('mini-css-class-name/css-loader');
@@ -128,7 +128,7 @@ module.exports = {
 };
 ```
 
-**Development and Production Environments**
+#### Development and Production Environments
 
 Setup of minimizing the class names only in the `production` build. In the `development` environment, you may use a human-readable class name template. It will be more easy to debug your projects.
 
