@@ -67,11 +67,13 @@ Default template string
 
 ### css-loader
 
+Use with the Webpack [css-loader](https://github.com/webpack-contrib/css-loader#css-loader) resolver
+
 ```js
 const createLocalIdent = require('mini-css-class-name/css-loader');
 ```
 
-There are two ways to plugin it's depending on css-loader version.
+There are two ways to plugin it's depending on `css-loader` version.
 
 **css-loader <= 1.x || ~2.x**
 
@@ -126,7 +128,38 @@ module.exports = {
 };
 ```
 
+**Development and Production Environments**
+
+Setup of minimizing the class names only in the `production` build. In the `development` environment, you may use a human-readable class name template. It will be more easy to debug your projects.
+
+```js
+const createLocalIdent = require('mini-css-class-name/css-loader');
+
+const localIndent = createLocalIdent(/* options */);
+
+module.exports = {
+
+  // webpack config ...
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        options: {
+          modules: process.env.NODE_ENV === 'production'
+            ? { getLocalIdent: localIndent }
+            : { localIdentName: '[path][name]__[local]--[hash:base64:5]' },
+        },
+      },
+    ],
+  },
+};
+```
+
 ### postcss-modules
+
+Use minimazer with the PostCSS [postcss-modules](https://github.com/madyankin/postcss-modules#postcss-modules) plugin
 
 ```js
 const generateScopedName = require('mini-css-class-name/postcss-modules');
@@ -135,24 +168,25 @@ const generateScopedName = require('mini-css-class-name/postcss-modules');
 **Example**
 
 ```js
-const { readFile } = require('fs/promises');
+const { readFile } = require('node:fs/promises');
 const postcss = require('postcss');
 const postcssModules = require('postcss-modules');
 const generateScopedName = require('mini-css-class-name/postcss-modules');
 
 const getStyles = async () => {
-  let json;
+  const path = './styles.css';
+  const source = await readFile(path, 'utf8');
 
-  const source = await readFile('./styles.css', 'utf8');
+  let json;
 
   const { css } = await postcss([
     postcssModules({
-      generateScopedName: generateScopedName(/* options */),
       getJSON(_, jsonData) {
         json = jsonData;
       },
+      generateScopedName: generateScopedName(/* options */),
     }),
-  ]).process(source);
+  ]).process(source, { from: path });
 
   return { json, css };
 };
@@ -160,7 +194,7 @@ const getStyles = async () => {
 
 ## Gatsby
 
-You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2, v3 or v4
+You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2, v3, v4 or v5
 
 > [gatsby-plugin-mini-css-class-name](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme)
 
