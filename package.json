@@ -1,12 +1,12 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "exports": {
     ".": "./index.js",
     "./css-loader": "./css-loader/index.js",
-    "./postcss-loader": "./postcss-loader/index.js",
+    "./postcss-modules": "./postcss-modules/index.js",
     "./package.json": "./package.json"
   },
   "scripts": {
