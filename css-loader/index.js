@@ -1,25 +1,24 @@
 const miniCssClassName = require('../index.js');
 
 /**
- * @param {miniCssClassName.Options} [options] options
+ * @typedef {Pick<Map<string, string>, 'has' | 'get' | 'set'>} CacheMap
+ * @param {miniCssClassName.Options & { cache?: CacheMap }} [options] options
  * @returns {function(): string} Generate
  */
-module.exports = (options) => {
-  /** @type {Map<string, string>} */
-  const cache = new Map();
+module.exports = ({ cache, ...options } = {}) => {
+  const map = cache || new Map();
   const generate = miniCssClassName(options);
 
   return (context, _, localName) => {
-    /** @type {string} */
     const key = context.resourcePath + localName;
 
-    if (cache.has(key)) {
-      return cache.get(key);
+    if (map.has(key)) {
+      return map.get(key);
     }
 
     const className = generate();
 
-    cache.set(key, className);
+    map.set(key, className);
 
     return className;
   };
