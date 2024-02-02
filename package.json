@@ -14,8 +14,8 @@
     "test": "uvu tests"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.5.2",
-    "eslint": "^8.52.0",
+    "@evilmartians/lefthook": "^1.6.1",
+    "eslint": "^8.56.0",
     "uvu": "^0.5.6"
   },
   "repository": {
