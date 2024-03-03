@@ -65,12 +65,12 @@ const hasInvalidStartChar = (char) => /[^a-z_]/i.test(char);
 
 /**
  * @param {Options} options generation
- * @returns {function(): string} Generate
+ * @returns {function(): string}
  */
 module.exports = ({
   prefix = '',
   suffix = '',
-  excludePattern = null,
+  excludePattern,
 } = {}) => {
   if (typeof prefix !== 'string') {
     throw ex('`prefix` must be a String');
@@ -80,7 +80,7 @@ module.exports = ({
     throw ex('`suffix` must be a String');
   }
 
-  if (excludePattern !== null && !(excludePattern instanceof RegExp)) {
+  if (excludePattern != null && !(excludePattern instanceof RegExp)) {
     throw ex('`excludePattern` must be a RegExp');
   }
 
@@ -93,9 +93,9 @@ module.exports = ({
   }
 
   let firstChar = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_';
-  let afterChar =  `${firstChar}-0123456789`;
+  let afterChar = `${firstChar}-0123456789`;
 
-  if (excludePattern !== null) {
+  if (excludePattern != null) {
     firstChar = firstChar.replace(excludePattern, '');
     afterChar = afterChar.replace(excludePattern, '');
   }
@@ -107,23 +107,24 @@ module.exports = ({
   const accumulator = [];
 
   /**
-   * Generate
-   * @returns {string} unique class name
+   * @type {*}
    */
-  const generate = () => {
-    increment(accumulator, 0, START_LENGTH, AFTER_LENGTH);
-
-    return prefix + createClassName(accumulator, afterChar) + suffix;
-  };
+  const generate = prefix || suffix
+    ? () => (
+      increment(accumulator, 0, START_LENGTH, AFTER_LENGTH),
+      prefix + createClassName(accumulator, afterChar) + suffix
+    )
+    : () => (
+      increment(accumulator, 0, START_LENGTH, AFTER_LENGTH),
+      createClassName(accumulator, afterChar)
+    );
 
   /**
-   * @memberof Generate
    * @returns {number[]} accumulator
    */
   generate.getAccumulator = () => [...accumulator];
 
   /**
-   * @memberof Generate
    * @param {number[]} acc accumulator
    * @returns {number[]} accumulator
    */
@@ -135,7 +136,6 @@ module.exports = ({
   };
 
   /**
-   * @memberof Generate
    * @returns {void}
    */
   generate.reset = () => {

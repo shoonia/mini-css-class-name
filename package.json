@@ -1,6 +1,6 @@
 {
   "name": "mini-css-class-name",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
   "exports": {
@@ -14,8 +14,8 @@
     "test": "uvu tests"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.6.1",
-    "eslint": "^8.56.0",
+    "@evilmartians/lefthook": "^1.6.4",
+    "eslint": "^8.57.0",
     "uvu": "^0.5.6"
   },
   "repository": {
