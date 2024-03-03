@@ -65,7 +65,7 @@ const hasInvalidStartChar = (char) => /[^a-z_]/i.test(char);
 
 /**
  * @param {Options} options generation
- * @returns {function(): string} Generate
+ * @returns {function(): string}
  */
 module.exports = ({
   prefix = '',
@@ -107,8 +107,7 @@ module.exports = ({
   const accumulator = [];
 
   /**
-   * Generate
-   * @returns {string} unique class name
+   * @type {*}
    */
   const generate = prefix || suffix
     ? () => (
@@ -121,13 +120,11 @@ module.exports = ({
     );
 
   /**
-   * @member Generate
    * @returns {number[]} accumulator
    */
   generate.getAccumulator = () => [...accumulator];
 
   /**
-   * @member Generate
    * @param {number[]} acc accumulator
    * @returns {number[]} accumulator
    */
@@ -139,7 +136,6 @@ module.exports = ({
   };
 
   /**
-   * @member Generate
    * @returns {void}
    */
   generate.reset = () => {

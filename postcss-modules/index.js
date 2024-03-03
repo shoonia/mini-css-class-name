@@ -3,7 +3,7 @@ const miniCssClassName = require('../index.js');
 /**
  * @typedef {Pick<Map<string, string>, 'has' | 'get' | 'set'>} CacheMap
  * @param {miniCssClassName.Options & { cache?: CacheMap }} [options] options
- * @returns {function(): string} Generate
+ * @returns {function(): string}
  */
 module.exports = ({ cache, ...options } = {}) => {
   const map = cache || new Map();
