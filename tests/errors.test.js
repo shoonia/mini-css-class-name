@@ -1,41 +1,41 @@
-const { test } = require('uvu');
-const { throws, type } = require('uvu/assert');
+const { test } = require('node:test');
+const { throws, ok } = require('node:assert/strict');
 
 const miniCssClassName = require('..');
 
-const msgPrefixString = 'mini-css-class-name: `prefix` must be a String';
-const msgSuffixString = 'mini-css-class-name: `suffix` must be a String';
-const msgPrefixStart = 'mini-css-class-name: `prefix` cannot start with a digit or hyphens';
-const msgPefSufContain = 'mini-css-class-name: `prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_)';
-const msgRegExp = 'mini-css-class-name: `excludePattern` must be a RegExp';
+const prefixString = new TypeError('mini-css-class-name: `prefix` must be a String');
+const suffixString = new TypeError('mini-css-class-name: `suffix` must be a String');
+const prefixStart = new TypeError('mini-css-class-name: `prefix` cannot start with a digit or hyphens');
+const pefSufContain = new TypeError('mini-css-class-name: `prefix` and `suffix` can contain only the characters [a-zA-Z0-9], plus the hyphen (-) and the underscore (_)');
+const msgRegExp = new TypeError('mini-css-class-name: `excludePattern` must be a RegExp');
 
 test('should be invalid options', () => {
-  throws(() => miniCssClassName(null), (err) => err instanceof TypeError);
+  throws(() => miniCssClassName(null), TypeError);
 });
 
 test('should be invalid `prefix`', () => {
-  throws(() => miniCssClassName({ prefix: null }), msgPrefixString);
-  throws(() => miniCssClassName({ prefix: 6 }), msgPrefixString);
-  throws(() => miniCssClassName({ prefix: /x/ }), msgPrefixString);
+  throws(() => miniCssClassName({ prefix: null }), prefixString);
+  throws(() => miniCssClassName({ prefix: 6 }), prefixString);
+  throws(() => miniCssClassName({ prefix: /x/ }), prefixString);
 });
 
 test('should be invalid `prefix` char', () => {
-  throws(() => miniCssClassName({ prefix: 'x--ß--' }), msgPefSufContain);
+  throws(() => miniCssClassName({ prefix: 'x--ß--' }), pefSufContain);
 });
 
 test('should be invalid first `prefix` char', () => {
-  throws(() => miniCssClassName({ prefix: '5' }), msgPrefixStart);
-  throws(() => miniCssClassName({ prefix: '-' }), msgPrefixStart);
+  throws(() => miniCssClassName({ prefix: '5' }), prefixStart);
+  throws(() => miniCssClassName({ prefix: '-' }), prefixStart);
 });
 
 test('should be invalid suffix', () => {
-  throws(() => miniCssClassName({ suffix: null }), msgSuffixString);
-  throws(() => miniCssClassName({ suffix: 0 }), msgSuffixString);
-  throws(() => miniCssClassName({ suffix: /y/ }), msgSuffixString);
+  throws(() => miniCssClassName({ suffix: null }), suffixString);
+  throws(() => miniCssClassName({ suffix: 0 }), suffixString);
+  throws(() => miniCssClassName({ suffix: /y/ }), suffixString);
 });
 
 test('should be invalid `suffix` char', () => {
-  throws(() => miniCssClassName({ suffix: '--ß' }), msgPefSufContain);
+  throws(() => miniCssClassName({ suffix: '--ß' }), pefSufContain);
 });
 
 test('should be invalid excludePattern', () => {
@@ -47,12 +47,12 @@ test('should be invalid excludePattern', () => {
 
 test('should not be error, excludePattern is null', () => {
   const cb = miniCssClassName({ excludePattern: null });
-  type(cb, 'function');
+
+  ok(cb instanceof Function);
 });
 
 test('should not be error, excludePattern is RegExp', () => {
   const cb = miniCssClassName({ excludePattern: /regex/ });
-  type(cb, 'function');
-});
 
-test.run();
+  ok(cb instanceof Function);
+});

@@ -1,5 +1,5 @@
-const { test } = require('uvu');
-const { is, equal } = require('uvu/assert');
+const { test } = require('node:test');
+const { strictEqual, notStrictEqual } = require('node:assert/strict');
 
 const createLocalIdent = require('../css-loader');
 const { mockCSSLoader, resourcePath } = require('./util');
@@ -7,22 +7,22 @@ const { mockCSSLoader, resourcePath } = require('./util');
 test('should be alphabet a queue', () => {
   const run = mockCSSLoader(createLocalIdent());
 
-  is(run('one'), 'a');
-  is(run('two'), 'b');
-  is(run('three'), 'c');
+  strictEqual(run('one'), 'a');
+  strictEqual(run('two'), 'b');
+  strictEqual(run('three'), 'c');
 });
 
 test('should return equal class names', () => {
   const run = mockCSSLoader(createLocalIdent());
   const localName = 'test';
 
-  is(run(localName), run(localName));
+  strictEqual(run(localName), run(localName));
 });
 
 test('should return NOT equal class names', () => {
   const run = mockCSSLoader(createLocalIdent());
 
-  is.not(run('x'), run('y'));
+  notStrictEqual(run('x'), run('y'));
 });
 
 test('should use cache map', () => {
@@ -33,8 +33,6 @@ test('should use cache map', () => {
 
   const run = mockCSSLoader(createLocalIdent({ cache }));
 
-  equal(run('class-a'), 'abc');
-  equal(run('class-b'), 'xyz');
+  strictEqual(run('class-a'), 'abc');
+  strictEqual(run('class-b'), 'xyz');
 });
-
-test.run();

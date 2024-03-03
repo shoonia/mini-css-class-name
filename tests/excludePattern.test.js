@@ -1,5 +1,5 @@
-const { test } = require('uvu');
-const { is } = require('uvu/assert');
+const { test } = require('node:test');
+const { strictEqual } = require('node:assert/strict');
 
 const { array1e5 } = require('./util');
 const miniCssClassName = require('..');
@@ -10,10 +10,8 @@ test('should be keep only alphabet characters', () => {
 
   array1e5().forEach(() => {
     const className = generate();
-    is(regex.test(className), false);
+    strictEqual(regex.test(className), false);
   });
 
   generate.reset();
 });
-
-test.run();

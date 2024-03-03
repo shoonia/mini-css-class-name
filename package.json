@@ -11,12 +11,11 @@
   },
   "scripts": {
     "lint": "eslint '**/*.js'",
-    "test": "uvu tests"
+    "test": "node --test tests/*.test.js"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.6.4",
-    "eslint": "^8.57.0",
-    "uvu": "^0.5.6"
+    "@evilmartians/lefthook": "^1.6.7",
+    "eslint": "^8.57.0"
   },
   "repository": {
     "type": "git",

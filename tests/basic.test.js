@@ -1,5 +1,5 @@
-const { test } = require('uvu');
-const { is, equal } = require('uvu/assert');
+const { test } = require('node:test');
+const { strictEqual, deepStrictEqual } = require('node:assert/strict');
 
 const { unique, array1e5, LENGTH } = require('./util');
 const miniCssClassName = require('..');
@@ -7,22 +7,22 @@ const miniCssClassName = require('..');
 test('should be alphabet a queue', () => {
   const generate = miniCssClassName();
 
-  is(generate(), 'a');
-  is(generate(), 'b');
-  is(generate(), 'c');
+  strictEqual(generate(), 'a');
+  strictEqual(generate(), 'b');
+  strictEqual(generate(), 'c');
 });
 
-test('should be 100 000 unique className', () => {
+test('should be 200 000 unique className', () => {
   const generate = miniCssClassName();
   const classList = array1e5().map(() => generate());
   const uniqueList = unique(classList);
 
   generate.reset();
 
-  is(uniqueList.length, LENGTH);
+  strictEqual(uniqueList.length, LENGTH);
 });
 
-test('should be 100 000 unique className with prefix', () => {
+test('should be 200 000 unique className with prefix', () => {
   const generate = miniCssClassName({
     prefix: 'prefix--',
   });
@@ -32,10 +32,10 @@ test('should be 100 000 unique className with prefix', () => {
 
   generate.reset();
 
-  is(uniqueList.length, LENGTH);
+  strictEqual(uniqueList.length, LENGTH);
 });
 
-test('should be 100 000 unique className with suffix', () => {
+test('should be 200 000 unique className with suffix', () => {
   const generate = miniCssClassName({
     suffix: '--suffix',
   });
@@ -45,10 +45,10 @@ test('should be 100 000 unique className with suffix', () => {
 
   generate.reset();
 
-  is(uniqueList.length, LENGTH);
+  strictEqual(uniqueList.length, LENGTH);
 });
 
-test('should be 100 000 unique className with suffix and prefix', () => {
+test('should be 200 000 unique className with suffix and prefix', () => {
   const generate = miniCssClassName({
     prefix: 'prefix--',
     suffix: '--suffix',
@@ -59,7 +59,7 @@ test('should be 100 000 unique className with suffix and prefix', () => {
 
   generate.reset();
 
-  is(uniqueList.length, LENGTH);
+  strictEqual(uniqueList.length, LENGTH);
 });
 
 test('should be valid first character class name', () => {
@@ -67,7 +67,7 @@ test('should be valid first character class name', () => {
 
   array1e5().forEach(() => {
     const className = generate();
-    is(/[^a-z_]/i.test(className[0]), false);
+    strictEqual(/[^a-z_]/i.test(className[0]), false);
   });
 
   generate.reset();
@@ -84,7 +84,5 @@ test('should reset', () => {
 
   generate.reset();
 
-  equal(list1, list2);
+  deepStrictEqual(list1, list2);
 });
-
-test.run();
