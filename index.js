@@ -16,17 +16,12 @@
 const increment = (acc, index, start, end) => {
   if (acc.length === index) {
     acc.push(0);
-    return;
-  }
-
-  if (acc[index] < start) {
+  } else if (acc[index] < start) {
     ++acc[index];
-    return;
+  } else {
+    acc[index] = 0;
+    increment(acc, ++index, end, end);
   }
-
-  acc[index] = 0;
-
-  return increment(acc, ++index, end, end);
 };
 
 /**
