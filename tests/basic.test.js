@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const { strictEqual, deepStrictEqual } = require('node:assert/strict');
 
-const { unique, array1e5, LENGTH } = require('./util');
+const { array1e5, LENGTH } = require('./util');
 const miniCssClassName = require('..');
 
 test('should be alphabet a queue', () => {
@@ -15,11 +15,11 @@ test('should be alphabet a queue', () => {
 test('should be 200 000 unique className', () => {
   const generate = miniCssClassName();
   const classList = array1e5().map(() => generate());
-  const uniqueList = unique(classList);
+  const unique = new Set(classList);
 
   generate.reset();
 
-  strictEqual(uniqueList.length, LENGTH);
+  strictEqual(unique.size, LENGTH);
 });
 
 test('should be 200 000 unique className with prefix', () => {
@@ -28,11 +28,11 @@ test('should be 200 000 unique className with prefix', () => {
   });
 
   const classList = array1e5().map(() => generate());
-  const uniqueList = unique(classList);
+  const unique = new Set(classList);
 
   generate.reset();
 
-  strictEqual(uniqueList.length, LENGTH);
+  strictEqual(unique.size, LENGTH);
 });
 
 test('should be 200 000 unique className with suffix', () => {
@@ -41,11 +41,11 @@ test('should be 200 000 unique className with suffix', () => {
   });
 
   const classList = array1e5().map(() => generate());
-  const uniqueList = unique(classList);
+  const unique = new Set(classList);
 
   generate.reset();
 
-  strictEqual(uniqueList.length, LENGTH);
+  strictEqual(unique.size, LENGTH);
 });
 
 test('should be 200 000 unique className with suffix and prefix', () => {
@@ -55,11 +55,11 @@ test('should be 200 000 unique className with suffix and prefix', () => {
   });
 
   const classList = array1e5().map(() => generate());
-  const uniqueList = unique(classList);
+  const unique = new Set(classList);
 
   generate.reset();
 
-  strictEqual(uniqueList.length, LENGTH);
+  strictEqual(unique.size, LENGTH);
 });
 
 test('should be valid first character class name', () => {

@@ -9,7 +9,6 @@ const mockCSSLoader = (getLocalIdent) => {
 };
 
 module.exports = {
-  unique: (list) => Array.from(new Set(list)),
   array1e5: () => array1e5.slice(),
   LENGTH,
   resourcePath,

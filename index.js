@@ -14,13 +14,17 @@
  * @returns {void}
  */
 const increment = (acc, index, start, end) => {
-  if (acc.length === index) {
-    acc.push(0);
-  } else if (acc[index] < start) {
-    ++acc[index];
-  } else {
-    acc[index] = 0;
-    increment(acc, ++index, end, end);
+  while (true) {
+    if (acc.length === index) {
+      acc.push(0);
+      return;
+    }
+    if (acc[index] < start) {
+      ++acc[index];
+      return;
+    }
+    acc[index++] = 0;
+    start = end;
   }
 };
 
