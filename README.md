@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/mini-css-class-name.svg)](https://www.npmjs.com/package/mini-css-class-name)
 
 Minimum size unique CSS class names generator.
-It can be used with [Webpack](#css-modules), [Gatsby](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme) and [PostCSS](#postcss-modules) ecosystems.
+It can be used with [Webpack](#css-modules), [Vite](#vite), [Gatsby](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme) and [PostCSS](#postcss-modules) ecosystems.
 
 ## Install
 
@@ -67,7 +67,7 @@ Default template string
 
 ### css-loader
 
-Use with the Webpack [css-loader](https://github.com/webpack-contrib/css-loader#css-loader) resolver
+Use with the Webpack [css-loader](https://github.com/webpack/css-loader#css-loader) resolver
 
 ```js
 const createLocalIdent = require('mini-css-class-name/css-loader');
@@ -159,7 +159,7 @@ module.exports = {
 
 ### postcss-modules
 
-Use minimazer with the PostCSS [postcss-modules](https://github.com/madyankin/postcss-modules#postcss-modules) plugin
+Use mini-css-class-name with the PostCSS [postcss-modules](https://github.com/madyankin/postcss-modules#postcss-modules) plugin
 
 ```js
 const generateScopedName = require('mini-css-class-name/postcss-modules');
@@ -192,9 +192,39 @@ const getStyles = async () => {
 };
 ```
 
+### Vite
+
+Use mini-css-class-name with [Vite's](https://vite.dev/) CSS Modules. The example shows how to generate minified class names in production and readable names in development.
+
+```ts
+import { defineConfig } from 'vite';
+import generateScopedName from 'mini-css-class-name/postcss-modules';
+
+export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production';
+
+  return {
+
+    // Vite config ...
+
+    css: {
+      modules: {
+        generateScopedName: isProd
+          ? generateScopedName(/* options */)
+          : '[name]__[local]___[hash:base64:5]',
+      },
+    },
+  };
+});
+```
+
+**Development vs Production:**
+- **Production**: Uses `generateScopedName()` to generate minimum size class names (e.g., `a`, `b`, `c`)
+- **Development**: Uses readable template `[name]__[local]___[hash:base64:5]` for easier debugging
+
 ## Gatsby
 
-You also can use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2, v3, v4 or v5
+You can also use it with [Gatsby](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) v2, v3, v4 or v5
 
 > [gatsby-plugin-mini-css-class-name](https://github.com/shoonia/gatsby-plugin-mini-css-class-name#readme)
 
