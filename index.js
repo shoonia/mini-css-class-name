@@ -8,22 +8,22 @@
 
 /**
  * @param {number[]} acc accumulator for string indexes
- * @param {number} index currnet index
  * @param {number} start the max possible index for current char
  * @param {number} end the max possible index for next char
  * @returns {void}
  */
-const increment = (acc, index, start, end) => {
+const increment = (acc, start, end) => {
+  let i = 0;
   while (true) {
-    if (acc.length === index) {
+    if (acc.length === i) {
       acc.push(0);
       return;
     }
-    if (acc[index] < start) {
-      ++acc[index];
+    if (acc[i] < start) {
+      ++acc[i];
       return;
     }
-    acc[index++] = 0;
+    acc[i++] = 0;
     start = end;
   }
 };
@@ -110,11 +110,11 @@ module.exports = ({
    */
   const generate = prefix || suffix
     ? () => (
-      increment(accumulator, 0, START_LENGTH, AFTER_LENGTH),
+      increment(accumulator, START_LENGTH, AFTER_LENGTH),
       prefix + createClassName(accumulator, afterChar) + suffix
     )
     : () => (
-      increment(accumulator, 0, START_LENGTH, AFTER_LENGTH),
+      increment(accumulator, START_LENGTH, AFTER_LENGTH),
       createClassName(accumulator, afterChar)
     );
 
