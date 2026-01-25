@@ -3,10 +3,20 @@
   "version": "0.15.2",
   "description": "Minimum size unique CSS class names generator",
   "main": "index.js",
+  "types": "./index.d.ts",
   "exports": {
-    ".": "./index.js",
-    "./css-loader": "./css-loader/index.js",
-    "./postcss-modules": "./postcss-modules/index.js",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./css-loader": {
+      "types": "./css-loader/index.d.ts",
+      "default": "./css-loader/index.js"
+    },
+    "./postcss-modules": {
+      "types": "./postcss-modules/index.d.ts",
+      "default": "./postcss-modules/index.js"
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
@@ -22,7 +32,8 @@
   "files": [
     "css-loader",
     "postcss-modules",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "keywords": [
     "css",
