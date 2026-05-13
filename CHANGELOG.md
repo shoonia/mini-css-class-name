@@ -14,7 +14,7 @@
 
 ### Changed
 - Refactored increment function to simplify parameters and improve readability
-- Updated Node.js version to 24 in CI configuration and `.nvmr`c
+- Updated Node.js version to 24 in CI configuration and `.nvmrc`
 
 ### Fixed
 - Fixed increment function implementation with improved parameter handling
